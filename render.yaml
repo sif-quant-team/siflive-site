@@ -1,14 +1,15 @@
 services:
+  # Web API (FastAPI)
   - type: web
-    name: alpaca-pnl-api
-    env: python
-    plan: starter        # or "free" to try, but updates pause when sleeping
-    region: oregon       # pick any region close to you
+    runtime: python
+    name: siflive-api
+    region: oregon
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: APCA_API_KEY_ID
-        sync: false
+        sync: false          # you'll enter the secret in the dashboard
       - key: APCA_API_SECRET_KEY
         sync: false
       - key: APCA_BASE_URL
@@ -17,16 +18,17 @@ services:
         value: "5"
       - key: DB_URL
         value: sqlite:////var/data/trading.sqlite
-    disks:
-      - name: data
-        mountPath: /var/data
-        sizeGB: 1
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 1
 
-jobs:
+  # Cron job that runs ingestion every 5 minutes
   - type: cron
+    runtime: python
     name: alpaca-ingest
-    env: python
-    schedule: "*/5 * * * *"         # every 5 minutes
+    region: oregon
+    schedule: "*/5 * * * *"
     buildCommand: pip install -r requirements.txt
     startCommand: python -m app.cli
     envVars:
