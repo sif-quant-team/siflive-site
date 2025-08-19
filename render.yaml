@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: alpaca-pnl-api
+    env: python
+    plan: starter        # or "free" to try, but updates pause when sleeping
+    region: oregon       # pick any region close to you
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APCA_API_KEY_ID
+        sync: false
+      - key: APCA_API_SECRET_KEY
+        sync: false
+      - key: APCA_BASE_URL
+        value: https://paper-api.alpaca.markets
+      - key: POLL_MINUTES
+        value: "5"
+      - key: DB_URL
+        value: sqlite:////var/data/trading.sqlite
+    disks:
+      - name: data
+        mountPath: /var/data
+        sizeGB: 1
+
+jobs:
+  - type: cron
+    name: alpaca-ingest
+    env: python
+    schedule: "*/5 * * * *"         # every 5 minutes
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m app.cli
+    envVars:
+      - key: APCA_API_KEY_ID
+        sync: false
+      - key: APCA_API_SECRET_KEY
+        sync: false
+      - key: APCA_BASE_URL
+        value: https://paper-api.alpaca.markets
+      - key: DB_URL
+        value: sqlite:////var/data/trading.sqlite
