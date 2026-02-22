@@ -24,9 +24,14 @@ def print_portfolio_status(equity, raw_positions):
     print("="*50)
 
 def update_dashboard_file(equity, positions):
-    data = {"total_equity": equity, "holdings": positions, "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-    path = os.path.join(os.path.dirname(__file__), '../data/dashboard.json')
-    with open(path, 'w') as f:
+    data = {
+        "total_equity": equity,
+        "holdings": positions,
+        "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data', 'dashboard.json'))
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4)
 
 def main():
@@ -39,10 +44,34 @@ def main():
     raw_positions = client.get_raw_positions()
     print_portfolio_status(equity, raw_positions)
 
+    if not current_pos_dict:
+        bootstrap_targets = {"AAPL": 20, "MSFT": 40, "GOOGL": 60, "AMZN": 80}
+        print("\nNo existing positions detected.")
+        print("Bootstrap target shares: AAPL=20, MSFT=40, GOOGL=60, AMZN=80")
+        choice = input("\nDo you want to execute this bootstrap rebalance? (y/n): ").lower().strip()
+        if choice == 'y':
+            engine.rebalance_to_shares(bootstrap_targets, config.UNIVERSE)
+            new_equity, new_pos = client.get_account_state()
+            update_dashboard_file(new_equity, new_pos)
+            print("\nBootstrap rebalance complete. Dashboard updated.")
+        else:
+            print("\nBootstrap cancelled by user. No trades were made.")
+        return
+
     # 2. Get Strategy Signal
     df = client.get_historical_data(config.UNIVERSE, strategy.lookback)
-    df = df.reindex(columns=config.UNIVERSE).fillna(0)
-    data_dict = {'close': df.values, 'current_positions': current_pos_dict}
+    if df.empty:
+        print("\nNo historical data returned from Alpaca. Continuing with symbol-only strategy input.")
+        df = None
+    if df is not None:
+        close_values = df.reindex(columns=config.UNIVERSE).fillna(0).values
+    else:
+        close_values = []
+    data_dict = {
+        'close': close_values,
+        'current_positions': current_pos_dict,
+        'symbols': config.UNIVERSE,
+    }
     weights = strategy.generate_day(-1, data_dict)
 
     # 3. Interactive Confirmation

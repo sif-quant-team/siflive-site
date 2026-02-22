@@ -7,10 +7,13 @@ class AlpacaClient:
 
     def get_historical_data(self, symbols, lookback):
         try:
-            bars = self.api.get_bars(symbols, '1Day', limit=lookback * len(symbols), feed='iex').df
-            if bars.empty: return pd.DataFrame()
-            if 'symbol' not in bars.columns: bars = bars.reset_index()
-            return bars.pivot(index='timestamp', columns='symbol', values='close')
+            bars = self.api.get_bars(symbols, '1Day', limit=lookback, feed='iex').df
+            if bars.empty:
+                return pd.DataFrame()
+            if 'symbol' not in bars.columns:
+                bars = bars.reset_index()
+            df = bars.pivot(index='timestamp', columns='symbol', values='close')
+            return df.sort_index()
         except Exception as e:
             print(f"Data Fetch Error: {e}")
             return pd.DataFrame()

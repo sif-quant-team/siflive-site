@@ -4,8 +4,8 @@ import config
 print("--- ALPACA AUTH DIAGNOSTIC ---")
 # 1. Verify what the script actually "sees"
 print(f"Base URL: {config.BASE_URL}")
-print(f"Key ID starts with: {config.API_KEY[:5]}...") 
-print(f"Secret Key length: {len(config.SECRET_KEY)}")
+print(f"API Key present: {bool(config.API_KEY)}")
+print(f"Secret Key present: {bool(config.SECRET_KEY)}")
 
 api = tradeapi.REST(config.API_KEY, config.SECRET_KEY, config.BASE_URL)
 

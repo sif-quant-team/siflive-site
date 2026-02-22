@@ -12,3 +12,8 @@ BASE_URL = 'https://paper-api.alpaca.markets'
 # Universe order: AAPL (Index 0), MSFT (Index 1)
 UNIVERSE = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "META", "NVDA", "BRK.B", "JNJ", "V"] 
 LEVERAGE = 1.0
+
+if not API_KEY:
+    raise ValueError("Missing ALPACA_API_KEY in environment.")
+if not SECRET_KEY:
+    raise ValueError("Missing ALPACA_API_SECRET in environment.")
