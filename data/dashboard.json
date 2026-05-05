@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-05-05T17:57:48.202955+00:00",
+  "updated_at": "2026-05-05T18:36:19.281873+00:00",
   "account": {
-    "equity": "112550.25",
+    "equity": "112480.83",
     "last_equity": "112018.6",
-    "buying_power": "112868.1"
+    "buying_power": "162712.7"
   },
   "history": {
     "1D": {
@@ -61,7 +61,15 @@
         1778002800,
         1778003100,
         1778003400,
-        1778003700
+        1778003700,
+        1778004000,
+        1778004300,
+        1778004600,
+        1778004900,
+        1778005200,
+        1778005500,
+        1778005800,
+        1778006100
       ],
       "equity": [
         112189.1,
@@ -117,7 +125,15 @@
         112509.18,
         112516.15,
         112522.35,
-        112550.25
+        112551.8,
+        112539.4,
+        112564.2,
+        112575.05,
+        112633.95,
+        112613.8,
+        112633.95,
+        112633.95,
+        112480.83
       ]
     },
     "1M": {
@@ -925,24 +941,146 @@
   },
   "positions": [
     {
-      "symbol": "SPY",
+      "symbol": "ABSI",
       "side": "long",
-      "qty": "155",
-      "avg_entry_price": "643.110581",
-      "current_price": "724.08",
-      "market_value": "112232.4",
-      "unrealized_pl": "12550.259945",
-      "unrealized_plpc": "0.1259"
+      "qty": "1035",
+      "avg_entry_price": "5.45",
+      "current_price": "5.44",
+      "market_value": "5630.4",
+      "unrealized_pl": "-10.35",
+      "unrealized_plpc": "-0.00183"
+    },
+    {
+      "symbol": "ACTU",
+      "side": "long",
+      "qty": "1935",
+      "avg_entry_price": "3",
+      "current_price": "3",
+      "market_value": "5805",
+      "unrealized_pl": "0",
+      "unrealized_plpc": "0"
+    },
+    {
+      "symbol": "AESI",
+      "side": "long",
+      "qty": "291",
+      "avg_entry_price": "19.33",
+      "current_price": "19.37",
+      "market_value": "5636.67",
+      "unrealized_pl": "11.64",
+      "unrealized_plpc": "0.00207"
+    },
+    {
+      "symbol": "AGH",
+      "side": "long",
+      "qty": "1116",
+      "avg_entry_price": "5.06",
+      "current_price": "5.05",
+      "market_value": "5635.8",
+      "unrealized_pl": "-11.16",
+      "unrealized_plpc": "-0.00198"
+    },
+    {
+      "symbol": "AGPU",
+      "side": "long",
+      "qty": "1115",
+      "avg_entry_price": "5.29",
+      "current_price": "5.22",
+      "market_value": "5820.3",
+      "unrealized_pl": "-78.05",
+      "unrealized_plpc": "-0.01323"
+    },
+    {
+      "symbol": "AIFF",
+      "side": "long",
+      "qty": "2774",
+      "avg_entry_price": "2.04",
+      "current_price": "2.035",
+      "market_value": "5645.09",
+      "unrealized_pl": "-13.87",
+      "unrealized_plpc": "-0.00245"
+    },
+    {
+      "symbol": "AIP",
+      "side": "long",
+      "qty": "186",
+      "avg_entry_price": "30.3",
+      "current_price": "30.3",
+      "market_value": "5635.8",
+      "unrealized_pl": "0",
+      "unrealized_plpc": "0"
+    },
+    {
+      "symbol": "ALMU",
+      "side": "long",
+      "qty": "208",
+      "avg_entry_price": "27.07",
+      "current_price": "26.93",
+      "market_value": "5601.44",
+      "unrealized_pl": "-29.12",
+      "unrealized_plpc": "-0.00517"
+    },
+    {
+      "symbol": "AMSC",
+      "side": "long",
+      "qty": "102",
+      "avg_entry_price": "54.7",
+      "current_price": "54.63",
+      "market_value": "5572.26",
+      "unrealized_pl": "-7.14",
+      "unrealized_plpc": "-0.00128"
+    },
+    {
+      "symbol": "AMTX",
+      "side": "long",
+      "qty": "1507",
+      "avg_entry_price": "3.74",
+      "current_price": "3.73",
+      "market_value": "5621.11",
+      "unrealized_pl": "-15.07",
+      "unrealized_plpc": "-0.00267"
     }
   ],
   "orders": [
     {
-      "symbol": "SPY",
+      "symbol": "AESI",
       "side": "buy",
-      "qty": "155",
+      "qty": "291",
       "type": "market",
-      "filled_avg_price": "643.110581",
-      "filled_at": "2025-08-18T13:31:14.241786Z"
+      "filled_avg_price": "19.33",
+      "filled_at": "2026-05-05T18:33:32.264733Z"
+    },
+    {
+      "symbol": "AIFF",
+      "side": "buy",
+      "qty": "2774",
+      "type": "market",
+      "filled_avg_price": "2.04",
+      "filled_at": "2026-05-05T18:33:30.870335Z"
+    },
+    {
+      "symbol": "AMSC",
+      "side": "buy",
+      "qty": "102",
+      "type": "market",
+      "filled_avg_price": "54.7",
+      "filled_at": "2026-05-05T18:33:28.179606Z"
+    },
+    {
+      "symbol": "AGH",
+      "side": "buy",
+      "qty": "1116",
+      "type": "market",
+      "filled_avg_price": "5.06",
+      "filled_at": "2026-05-05T18:33:24.923508Z"
+    },
+    {
+      "symbol": "AMTX",
+      "side": "buy",
+      "qty": "1507",
+      "type": "market",
+      "filled_avg_price": "3.74",
+      "filled_at": "2026-05-05T18:33:23.164544Z"
     }
   ]
 }
