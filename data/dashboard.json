@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-05-23T05:09:10.610460+00:00",
+  "updated_at": "2026-05-23T09:25:30.455499+00:00",
   "account": {
-    "equity": "108184.36",
-    "last_equity": "108622.36",
-    "buying_power": "159331.24"
+    "equity": "108184.16",
+    "last_equity": "108172.26",
+    "buying_power": "159330.84"
   },
   "history": {
     "1D": {
@@ -193,7 +193,8 @@
         1779148800,
         1779235200,
         1779321600,
-        1779408000
+        1779408000,
+        1779494400
       ],
       "equity": [
         110555.4,
@@ -217,7 +218,8 @@
         110028.44,
         109108.88,
         109033.94,
-        108622.36
+        108622.36,
+        108172.26
       ]
     },
     "6M": {
@@ -344,7 +346,8 @@
         1779148800,
         1779235200,
         1779321600,
-        1779408000
+        1779408000,
+        1779494400
       ],
       "equity": [
         103971.0,
@@ -469,7 +472,8 @@
         110028.44,
         109108.88,
         109033.94,
-        108622.36
+        108622.36,
+        108172.26
       ]
     },
     "1Y": {
@@ -724,7 +728,8 @@
         1779148800,
         1779235200,
         1779321600,
-        1779408000
+        1779408000,
+        1779494400
       ],
       "equity": [
         100000.0,
@@ -977,7 +982,8 @@
         110028.44,
         109108.88,
         109033.94,
-        108622.36
+        108622.36,
+        108172.26
       ]
     }
   },
@@ -986,10 +992,10 @@
       "symbol": "ABSI",
       "side": "short",
       "qty": "-212",
-      "avg_entry_price": "5.57132",
+      "avg_entry_price": "5.571321",
       "current_price": "5.1",
       "market_value": "-1081.2",
-      "unrealized_pl": "99.91984",
+      "unrealized_pl": "99.920052",
       "unrealized_plpc": "0.0846"
     },
     {
@@ -1026,10 +1032,10 @@
       "symbol": "AMSC",
       "side": "short",
       "qty": "-21",
-      "avg_entry_price": "53.255715",
+      "avg_entry_price": "53.255714",
       "current_price": "51.84",
       "market_value": "-1088.64",
-      "unrealized_pl": "29.730015",
+      "unrealized_pl": "29.729994",
       "unrealized_plpc": "0.02658"
     },
     {
@@ -1086,10 +1092,10 @@
       "symbol": "ATLN",
       "side": "long",
       "qty": "952",
-      "avg_entry_price": "1.330925",
+      "avg_entry_price": "1.330924",
       "current_price": "1.42",
       "market_value": "1351.84",
-      "unrealized_pl": "84.7994",
+      "unrealized_pl": "84.800352",
       "unrealized_plpc": "0.06693"
     },
     {
@@ -1106,10 +1112,10 @@
       "symbol": "BBT",
       "side": "long",
       "qty": "44",
-      "avg_entry_price": "28.218637",
+      "avg_entry_price": "28.218636",
       "current_price": "28.78",
       "market_value": "1266.32",
-      "unrealized_pl": "24.699972",
+      "unrealized_pl": "24.700016",
       "unrealized_plpc": "0.01989"
     },
     {
@@ -1276,11 +1282,11 @@
       "symbol": "CLB",
       "side": "long",
       "qty": "89",
-      "avg_entry_price": "13.203556",
+      "avg_entry_price": "13.202921",
       "current_price": "14.22",
       "market_value": "1265.58",
-      "unrealized_pl": "90.463516",
-      "unrealized_plpc": "0.07698"
+      "unrealized_pl": "90.520031",
+      "unrealized_plpc": "0.07703"
     },
     {
       "symbol": "CMPX",
@@ -1296,10 +1302,10 @@
       "symbol": "CNC",
       "side": "short",
       "qty": "-18",
-      "avg_entry_price": "58.856666",
+      "avg_entry_price": "58.856667",
       "current_price": "59.14",
       "market_value": "-1064.52",
-      "unrealized_pl": "-5.100012",
+      "unrealized_pl": "-5.099994",
       "unrealized_plpc": "-0.00481"
     },
     {
@@ -1370,7 +1376,7 @@
       "qty": "1214",
       "type": "market",
       "filled_avg_price": "1.03",
-      "filled_at": "2026-05-22T17:04:00.016123163Z"
+      "filled_at": "2026-05-22T17:04:00.016123Z"
     },
     {
       "symbol": "BE",
