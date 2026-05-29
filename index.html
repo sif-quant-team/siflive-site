@@ -114,7 +114,7 @@
       letter-spacing: 0.04em;
       text-transform: none;
     }
-    .chart-controls { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    .chart-controls { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
     .chart-controls button {
       background: var(--paper);
       border: 1px solid var(--line);
@@ -127,6 +127,12 @@
     }
     .chart-controls button:hover { color: var(--ink); border-color: var(--sif-red); }
     .chart-controls button.active { background: var(--sif-red); border-color: var(--sif-red); color: var(--paper); }
+    .range-return {
+      min-height: 22px;
+      margin-bottom: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+    }
     .chart-wrap {
       position: relative;
       background: var(--paper);
@@ -183,6 +189,7 @@
       .chart-wrap { height: 300px; padding: 10px; }
       .section-title { display: block; }
       .section-note { display: block; margin-top: 5px; }
+      .range-return { font-size: 0.92rem; }
       table { min-width: 760px; }
       .section { overflow-x: auto; }
     }
@@ -224,6 +231,7 @@
       <button id="btn-6M" onclick="setRange('6M')">6M</button>
       <button id="btn-1Y" onclick="setRange('1Y')">1Y</button>
     </div>
+    <div class="range-return" id="range-return">—</div>
     <div class="chart-wrap">
       <canvas id="chart"></canvas>
       <div class="chart-tooltip" id="chart-tooltip"></div>
@@ -274,7 +282,8 @@
     let data = null;
     let range = '1M';
     let currentCandles = [];
-    const candleBuckets = { '1D': 3, '1M': 3, '6M': 10, '1Y': 20 };
+    const candleBuckets = { '1D': 1, '1M': 1, '6M': 4, '1Y': 7 };
+    const rangeLabels = { '1D': 'past 1 day', '1M': 'past 1 month', '6M': 'past 6 months', '1Y': 'past 1 year' };
 
     const $ = id => document.getElementById(id);
 
@@ -363,13 +372,17 @@
 
       ctx.textAlign = 'center';
       ctx.textBaseline = 'top';
-      const tickStep = Math.max(1, Math.ceil(candles.length / 6));
+      const tickTarget = width < 520 ? 4 : 6;
+      const tickStep = Math.max(1, Math.ceil(candles.length / tickTarget));
       candles.forEach((c, i) => {
-        if (i % tickStep !== 0 && i !== candles.length - 1) return;
+        const isFinal = i === candles.length - 1;
+        if (i % tickStep !== 0 && !isFinal) return;
+        if (isFinal && candles.length > 1 && (i - 1) % tickStep === 0) return;
         ctx.fillText(formatChartDate(c.x), xFor(i), height - pad.bottom + 12);
       });
 
-      const candleWidth = clamp((plotW / candles.length) * 0.55, 4, 18);
+      const slotWidth = plotW / Math.max(candles.length, 1);
+      const candleWidth = clamp(slotWidth * 0.68, 3, 14);
 
       candles.forEach((c, i) => {
         const x = xFor(i);
@@ -434,6 +447,20 @@
       if (data) renderChart();
     }
 
+    function renderRangeReturn(equity) {
+      const el = $('range-return');
+      const values = equity.map(Number).filter(v => !Number.isNaN(v));
+      if (values.length < 2 || !values[0]) {
+        el.textContent = '—';
+        el.className = 'range-return';
+        return;
+      }
+
+      const pct = (values[values.length - 1] - values[0]) / values[0];
+      el.textContent = `${sign(pct)}${fmt(pct * 100)}% ${rangeLabels[range]}`;
+      el.className = `range-return ${colorClass(pct)}`;
+    }
+
     function renderChart() {
       const h = data.history[range];
       if (!h || !h.timestamps.length) return;
@@ -441,6 +468,7 @@
       const equity = h.equity;
       const candles = makeCandles(h.timestamps, equity);
       currentCandles = candles;
+      renderRangeReturn(equity);
       drawCanvasChart(currentCandles);
       bindChartHover();
     }
