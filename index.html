@@ -425,6 +425,8 @@
     let data = null;
     let range = '1D';
     let currentCandles = [];
+    let currentLinePoints = [];
+    let chartMode = 'candles';
     const candleBuckets = { '1D': 3, '1M': 1, '3M': 4, '6M': 4, '1Y': 7 };
     const rangeLabels = { '1D': 'past 1 day', '1M': 'past 1 month', '3M': 'past 3 months', '6M': 'past 6 months', '1Y': 'past 1 year' };
     let alphaCodeLoaded = false;
@@ -589,14 +591,131 @@
       });
     }
 
+    function makeLinePoints(timestamps, equity) {
+      return timestamps.map((ts, i) => ({
+        x: ts * 1000,
+        y: Number(equity[i]),
+      })).filter(p => !Number.isNaN(p.y));
+    }
+
+    function drawLineChart(points, hoverIndex = -1) {
+      const canvas = $('chart');
+      const { ctx, width, height } = setupCanvas(canvas);
+      const pad = { top: 16, right: 18, bottom: 34, left: 92 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, width, height);
+
+      if (!points.length || plotW <= 0 || plotH <= 0) return;
+
+      let min = Math.min(...points.map(p => p.y));
+      let max = Math.max(...points.map(p => p.y));
+      const span = max - min || Math.max(max * 0.01, 1);
+      min -= span * 0.08;
+      max += span * 0.08;
+
+      const xFor = i => points.length === 1 ? pad.left + plotW / 2 : pad.left + (i / (points.length - 1)) * plotW;
+      const yFor = v => pad.top + ((max - v) / (max - min)) * plotH;
+      const trend = points[points.length - 1].y >= points[0].y ? '#176f3d' : '#b11d2a';
+
+      ctx.strokeStyle = '#eeeeee';
+      ctx.fillStyle = '#747474';
+      ctx.lineWidth = 1;
+      ctx.font = '11px Arial';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+
+      for (let i = 0; i <= 4; i++) {
+        const y = pad.top + (plotH / 4) * i;
+        const value = max - ((max - min) / 4) * i;
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(width - pad.right, y);
+        ctx.stroke();
+        ctx.fillText('$' + Math.round(value).toLocaleString(), pad.left - 8, y);
+      }
+
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      const tickTarget = width < 520 ? 4 : 6;
+      const tickStep = Math.max(1, Math.ceil(points.length / tickTarget));
+      points.forEach((p, i) => {
+        const isFinal = i === points.length - 1;
+        if (i % tickStep !== 0 && !isFinal) return;
+        if (isFinal && points.length > 1 && (i - 1) % tickStep === 0) return;
+        ctx.fillText(formatChartDate(p.x), xFor(i), height - pad.bottom + 12);
+      });
+
+      ctx.save();
+      ctx.beginPath();
+      points.forEach((p, i) => {
+        const x = xFor(i);
+        const y = yFor(p.y);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.lineTo(xFor(points.length - 1), pad.top + plotH);
+      ctx.lineTo(xFor(0), pad.top + plotH);
+      ctx.closePath();
+      const fill = ctx.createLinearGradient(0, pad.top, 0, pad.top + plotH);
+      fill.addColorStop(0, trend + '26');
+      fill.addColorStop(1, trend + '00');
+      ctx.fillStyle = fill;
+      ctx.fill();
+      ctx.restore();
+
+      ctx.strokeStyle = trend;
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      points.forEach((p, i) => {
+        const x = xFor(i);
+        const y = yFor(p.y);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+
+      points.forEach((p, i) => {
+        const x = xFor(i);
+        const y = yFor(p.y);
+        ctx.fillStyle = i === hoverIndex ? '#151515' : trend;
+        ctx.beginPath();
+        ctx.arc(x, y, i === hoverIndex ? 4 : 2.5, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
     function bindChartHover() {
       const canvas = $('chart');
       const tooltip = $('chart-tooltip');
       canvas.onmousemove = e => {
-        if (!currentCandles.length) return;
         const rect = canvas.getBoundingClientRect();
         const pad = { left: 92, right: 18 };
         const plotW = rect.width - pad.left - pad.right;
+
+        if (chartMode === 'line') {
+          if (!currentLinePoints.length) return;
+          const rawIndex = currentLinePoints.length === 1
+            ? 0
+            : Math.round(((e.clientX - rect.left - pad.left) / plotW) * (currentLinePoints.length - 1));
+          const index = clamp(rawIndex, 0, currentLinePoints.length - 1);
+          const p = currentLinePoints[index];
+
+          drawLineChart(currentLinePoints, index);
+          tooltip.style.display = 'block';
+          tooltip.style.left = `${clamp(e.clientX - rect.left, 0, rect.width - 150)}px`;
+          tooltip.style.top = `${clamp(e.clientY - rect.top, 34, rect.height - 34)}px`;
+          tooltip.innerHTML = [
+            formatChartDate(p.x),
+            `Equity ${fmtDollar(p.y)}`,
+          ].join('<br>');
+          return;
+        }
+
+        if (!currentCandles.length) return;
         const slotWidth = plotW / Math.max(currentCandles.length, 1);
         const maxCandleWidth = range === '1D' ? 38 : 34;
         const candleWidth = clamp(slotWidth * 0.9, 5, maxCandleWidth);
@@ -622,7 +741,8 @@
       };
       canvas.onmouseleave = () => {
         tooltip.style.display = 'none';
-        drawCanvasChart(currentCandles);
+        if (chartMode === 'line') drawLineChart(currentLinePoints);
+        else drawCanvasChart(currentCandles);
       };
     }
 
@@ -652,10 +772,20 @@
       if (!h || !h.timestamps.length) return;
 
       const equity = h.equity;
-      const candles = makeCandles(h.timestamps, equity);
-      currentCandles = candles;
       renderRangeReturn(equity);
-      drawCanvasChart(currentCandles);
+
+      if (range === '1D') {
+        chartMode = 'candles';
+        currentLinePoints = [];
+        currentCandles = makeCandles(h.timestamps, equity);
+        drawCanvasChart(currentCandles);
+      } else {
+        chartMode = 'line';
+        currentCandles = [];
+        currentLinePoints = makeLinePoints(h.timestamps, equity);
+        drawLineChart(currentLinePoints);
+      }
+
       bindChartHover();
     }
 
