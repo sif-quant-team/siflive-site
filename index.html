@@ -339,7 +339,7 @@
     function drawCanvasChart(candles, hoverIndex = -1) {
       const canvas = $('chart');
       const { ctx, width, height } = setupCanvas(canvas);
-      const pad = { top: 16, right: 18, bottom: 34, left: 74 };
+      const pad = { top: 16, right: 18, bottom: 34, left: 92 };
       const plotW = width - pad.left - pad.right;
       const plotH = height - pad.top - pad.bottom;
 
@@ -355,7 +355,14 @@
       min -= span * 0.08;
       max += span * 0.08;
 
-      const xFor = i => candles.length === 1 ? pad.left + plotW / 2 : pad.left + (i / (candles.length - 1)) * plotW;
+      const slotWidth = plotW / Math.max(candles.length, 1);
+      const maxCandleWidth = range === '1D' ? 38 : 34;
+      const candleWidth = clamp(slotWidth * 0.9, 5, maxCandleWidth);
+      const horizontalInset = candleWidth / 2 + 3;
+      const innerPlotW = Math.max(1, plotW - horizontalInset * 2);
+      const xFor = i => candles.length === 1
+        ? pad.left + plotW / 2
+        : pad.left + horizontalInset + (i / (candles.length - 1)) * innerPlotW;
       const yFor = v => pad.top + ((max - v) / (max - min)) * plotH;
 
       ctx.strokeStyle = '#eeeeee';
@@ -385,10 +392,6 @@
         if (isFinal && candles.length > 1 && (i - 1) % tickStep === 0) return;
         ctx.fillText(formatChartDate(c.x), xFor(i), height - pad.bottom + 12);
       });
-
-      const slotWidth = plotW / Math.max(candles.length, 1);
-      const maxCandleWidth = range === '1D' ? 38 : 34;
-      const candleWidth = clamp(slotWidth * 0.9, 5, maxCandleWidth);
 
       candles.forEach((c, i) => {
         const x = xFor(i);
@@ -422,9 +425,16 @@
       canvas.onmousemove = e => {
         if (!currentCandles.length) return;
         const rect = canvas.getBoundingClientRect();
-        const pad = { left: 74, right: 18 };
+        const pad = { left: 92, right: 18 };
         const plotW = rect.width - pad.left - pad.right;
-        const rawIndex = currentCandles.length === 1 ? 0 : Math.round(((e.clientX - rect.left - pad.left) / plotW) * (currentCandles.length - 1));
+        const slotWidth = plotW / Math.max(currentCandles.length, 1);
+        const maxCandleWidth = range === '1D' ? 38 : 34;
+        const candleWidth = clamp(slotWidth * 0.9, 5, maxCandleWidth);
+        const horizontalInset = candleWidth / 2 + 3;
+        const innerPlotW = Math.max(1, plotW - horizontalInset * 2);
+        const rawIndex = currentCandles.length === 1
+          ? 0
+          : Math.round(((e.clientX - rect.left - pad.left - horizontalInset) / innerPlotW) * (currentCandles.length - 1));
         const index = clamp(rawIndex, 0, currentCandles.length - 1);
         const c = currentCandles[index];
 
