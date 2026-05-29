@@ -3,93 +3,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paper Trading Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <title>SIF Live Trading Dashboard</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --sif-red: #8f151d;
+      --sif-red-dark: #651016;
+      --ink: #151515;
+      --muted: #747474;
+      --line: #dedede;
+      --soft-line: #eeeeee;
+      --paper: #ffffff;
+      --wash: #f7f5f2;
+      --positive: #176f3d;
+      --negative: #b11d2a;
+    }
+
     body {
-      font-family: 'Courier New', monospace;
-      background: #f5f5f5;
-      color: #1a1a1a;
-      padding: 28px 32px;
-      max-width: 1100px;
+      font-family: Georgia, 'Times New Roman', serif;
+      background:
+        linear-gradient(180deg, rgba(143, 21, 29, 0.08), rgba(143, 21, 29, 0) 190px),
+        var(--wash);
+      color: var(--ink);
+      padding: 34px 32px 42px;
+      max-width: 1180px;
       margin: 0 auto;
     }
 
-    h1 { font-size: 1.3rem; font-weight: normal; letter-spacing: 0.05em; }
-    .updated { color: #888; font-size: 0.78rem; margin-top: 4px; margin-bottom: 28px; }
-
-    /* ── Stats ── */
-    .stats { display: flex; gap: 16px; margin-bottom: 36px; flex-wrap: wrap; }
-    .stat-box {
-      background: #fff;
-      border: 1px solid #ddd;
-      padding: 14px 22px;
-      min-width: 170px;
+    .topbar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 18px;
+      margin-bottom: 26px;
+      border-bottom: 2px solid var(--sif-red);
     }
-    .stat-label {
-      color: #888;
-      font-size: 0.7rem;
+
+    .brand-kicker {
+      color: var(--sif-red);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
       margin-bottom: 6px;
     }
-    .stat-value { font-size: 1.5rem; }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 0.95;
+      font-weight: normal;
+      letter-spacing: 0;
+    }
+
+    .updated {
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.78rem;
+      text-align: right;
+      min-width: 210px;
+    }
+
+    /* ── Stats ── */
+    .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 34px; }
+    .stat-box {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--sif-red);
+      padding: 18px 22px;
+      min-width: 0;
+    }
+    .stat-label {
+      color: var(--muted);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 9px;
+    }
+    .stat-value {
+      font-family: 'Courier New', monospace;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      line-height: 1;
+    }
 
     /* ── Chart ── */
     .section { margin-bottom: 44px; }
     .section-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: Arial, Helvetica, sans-serif;
       font-size: 0.72rem;
-      color: #888;
+      color: var(--sif-red);
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.14em;
       padding-bottom: 8px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid var(--line);
       margin-bottom: 12px;
     }
-    .chart-controls { display: flex; gap: 6px; margin-bottom: 10px; }
-    .chart-controls button {
-      background: #fff;
-      border: 1px solid #ddd;
-      color: #888;
-      padding: 3px 11px;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 0.8rem;
+    .section-note {
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: none;
     }
-    .chart-controls button:hover { color: #333; }
-    .chart-controls button.active { border-color: #2e7d32; color: #2e7d32; }
+    .chart-controls { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    .chart-controls button {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 6px 13px;
+      cursor: pointer;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .chart-controls button:hover { color: var(--ink); border-color: var(--sif-red); }
+    .chart-controls button.active { background: var(--sif-red); border-color: var(--sif-red); color: var(--paper); }
     .chart-wrap {
-      background: #fff;
-      border: 1px solid #ddd;
+      position: relative;
+      background: var(--paper);
+      border: 1px solid var(--line);
       padding: 16px;
-      height: 280px;
+      height: 340px;
+    }
+    .chart-wrap canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .chart-tooltip {
+      position: absolute;
+      display: none;
+      pointer-events: none;
+      background: rgba(21, 21, 21, 0.92);
+      color: var(--paper);
+      padding: 8px 10px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      line-height: 1.35;
+      white-space: nowrap;
+      transform: translate(12px, -50%);
+      z-index: 2;
     }
 
     /* ── Tables ── */
-    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    table { width: 100%; border-collapse: collapse; font-family: Arial, Helvetica, sans-serif; font-size: 0.82rem; background: var(--paper); }
     th {
       text-align: left;
-      color: #888;
-      font-weight: normal;
-      padding: 5px 10px;
-      border-bottom: 1px solid #ddd;
+      color: var(--sif-red);
+      font-weight: 700;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.68rem;
     }
-    td { padding: 7px 10px; border-bottom: 1px solid #eee; }
+    td { padding: 9px 10px; border-bottom: 1px solid var(--soft-line); }
     tr:last-child td { border-bottom: none; }
-    tr:hover td { background: #fafafa; }
-    .empty { color: #aaa; font-style: italic; }
+    tr:hover td { background: #fbf8f7; }
+    .empty { color: #aaa; font-style: italic; font-family: Arial, Helvetica, sans-serif; }
 
     /* ── Colors ── */
-    .pos { color: #2e7d32; }
-    .neg { color: #c62828; }
+    .pos { color: var(--positive); }
+    .neg { color: var(--negative); }
+
+    @media (max-width: 760px) {
+      body { padding: 24px 16px 32px; }
+      .topbar { display: block; }
+      .updated { text-align: left; margin-top: 12px; }
+      .stats { grid-template-columns: 1fr; }
+      .chart-wrap { height: 300px; padding: 10px; }
+      .section-title { display: block; }
+      .section-note { display: block; margin-top: 5px; }
+      table { min-width: 760px; }
+      .section { overflow-x: auto; }
+    }
   </style>
 </head>
 <body>
 
-  <h1>Paper Trading Dashboard</h1>
-  <div class="updated" id="updated">Loading...</div>
+  <header class="topbar">
+    <div>
+      <div class="brand-kicker">Smith Investment Fund</div>
+      <h1>SIF Live</h1>
+    </div>
+    <div class="updated" id="updated">Loading...</div>
+  </header>
 
   <div class="stats">
     <div class="stat-box">
@@ -107,7 +214,10 @@
   </div>
 
   <div class="section">
-    <div class="section-title">Portfolio History</div>
+    <div class="section-title">
+      <span>Portfolio Equity Candles</span>
+      <span class="section-note">Synthetic OHLC derived from Alpaca portfolio history</span>
+    </div>
     <div class="chart-controls">
       <button id="btn-1D" onclick="setRange('1D')">1D</button>
       <button id="btn-1M" onclick="setRange('1M')" class="active">1M</button>
@@ -116,6 +226,7 @@
     </div>
     <div class="chart-wrap">
       <canvas id="chart"></canvas>
+      <div class="chart-tooltip" id="chart-tooltip"></div>
     </div>
   </div>
 
@@ -160,9 +271,10 @@
   </div>
 
   <script>
-    let chart = null;
     let data = null;
     let range = '1M';
+    let currentCandles = [];
+    const candleBuckets = { '1D': 3, '1M': 3, '6M': 10, '1Y': 20 };
 
     const $ = id => document.getElementById(id);
 
@@ -173,6 +285,147 @@
     function fmtDollar(n) { return '$' + fmt(n); }
     function sign(n) { return parseFloat(n) >= 0 ? '+' : ''; }
     function colorClass(n) { return parseFloat(n) >= 0 ? 'pos' : 'neg'; }
+    function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+    function formatChartDate(ms) {
+      const d = new Date(ms);
+      if (range === '1D') return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+
+    function makeCandles(timestamps, equity) {
+      const bucketSize = candleBuckets[range] || 1;
+      const candles = [];
+
+      for (let i = 0; i < equity.length; i += bucketSize) {
+        const values = equity.slice(i, i + bucketSize).map(Number).filter(v => !Number.isNaN(v));
+        if (!values.length) continue;
+
+        candles.push({
+          x: timestamps[Math.min(i + values.length - 1, timestamps.length - 1)] * 1000,
+          o: values[0],
+          h: Math.max(...values),
+          l: Math.min(...values),
+          c: values[values.length - 1],
+        });
+      }
+
+      return candles;
+    }
+
+    function setupCanvas(canvas) {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+      canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+      const ctx = canvas.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, width: rect.width, height: rect.height };
+    }
+
+    function drawCanvasChart(candles, hoverIndex = -1) {
+      const canvas = $('chart');
+      const { ctx, width, height } = setupCanvas(canvas);
+      const pad = { top: 16, right: 18, bottom: 34, left: 74 };
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, width, height);
+
+      if (!candles.length || plotW <= 0 || plotH <= 0) return;
+
+      let min = Math.min(...candles.map(c => c.l));
+      let max = Math.max(...candles.map(c => c.h));
+      const span = max - min || Math.max(max * 0.01, 1);
+      min -= span * 0.08;
+      max += span * 0.08;
+
+      const xFor = i => candles.length === 1 ? pad.left + plotW / 2 : pad.left + (i / (candles.length - 1)) * plotW;
+      const yFor = v => pad.top + ((max - v) / (max - min)) * plotH;
+
+      ctx.strokeStyle = '#eeeeee';
+      ctx.fillStyle = '#747474';
+      ctx.lineWidth = 1;
+      ctx.font = '11px Arial';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'middle';
+
+      for (let i = 0; i <= 4; i++) {
+        const y = pad.top + (plotH / 4) * i;
+        const value = max - ((max - min) / 4) * i;
+        ctx.beginPath();
+        ctx.moveTo(pad.left, y);
+        ctx.lineTo(width - pad.right, y);
+        ctx.stroke();
+        ctx.fillText('$' + Math.round(value).toLocaleString(), pad.left - 8, y);
+      }
+
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      const tickStep = Math.max(1, Math.ceil(candles.length / 6));
+      candles.forEach((c, i) => {
+        if (i % tickStep !== 0 && i !== candles.length - 1) return;
+        ctx.fillText(formatChartDate(c.x), xFor(i), height - pad.bottom + 12);
+      });
+
+      const candleWidth = clamp((plotW / candles.length) * 0.55, 4, 18);
+
+      candles.forEach((c, i) => {
+        const x = xFor(i);
+        const up = c.c >= c.o;
+        const color = up ? '#176f3d' : '#b11d2a';
+        const bodyTop = yFor(Math.max(c.o, c.c));
+        const bodyBottom = yFor(Math.min(c.o, c.c));
+        const bodyHeight = Math.max(2, bodyBottom - bodyTop);
+
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = hoverIndex === i ? 2 : 1.4;
+
+        ctx.beginPath();
+        ctx.moveTo(x, yFor(c.h));
+        ctx.lineTo(x, yFor(c.l));
+        ctx.stroke();
+
+        ctx.fillRect(x - candleWidth / 2, bodyTop, candleWidth, bodyHeight);
+
+        if (hoverIndex === i) {
+          ctx.strokeStyle = '#151515';
+          ctx.strokeRect(x - candleWidth / 2 - 2, bodyTop - 2, candleWidth + 4, bodyHeight + 4);
+        }
+      });
+    }
+
+    function bindChartHover() {
+      const canvas = $('chart');
+      const tooltip = $('chart-tooltip');
+      canvas.onmousemove = e => {
+        if (!currentCandles.length) return;
+        const rect = canvas.getBoundingClientRect();
+        const pad = { left: 74, right: 18 };
+        const plotW = rect.width - pad.left - pad.right;
+        const rawIndex = currentCandles.length === 1 ? 0 : Math.round(((e.clientX - rect.left - pad.left) / plotW) * (currentCandles.length - 1));
+        const index = clamp(rawIndex, 0, currentCandles.length - 1);
+        const c = currentCandles[index];
+
+        drawCanvasChart(currentCandles, index);
+        tooltip.style.display = 'block';
+        tooltip.style.left = `${clamp(e.clientX - rect.left, 0, rect.width - 150)}px`;
+        tooltip.style.top = `${clamp(e.clientY - rect.top, 34, rect.height - 34)}px`;
+        tooltip.innerHTML = [
+          formatChartDate(c.x),
+          `O ${fmtDollar(c.o)}`,
+          `H ${fmtDollar(c.h)}`,
+          `L ${fmtDollar(c.l)}`,
+          `C ${fmtDollar(c.c)}`,
+        ].join('<br>');
+      };
+      canvas.onmouseleave = () => {
+        tooltip.style.display = 'none';
+        drawCanvasChart(currentCandles);
+      };
+    }
 
     function setRange(r) {
       range = r;
@@ -185,57 +438,11 @@
       const h = data.history[range];
       if (!h || !h.timestamps.length) return;
 
-      const labels = h.timestamps.map(ts => {
-        const d = new Date(ts * 1000);
-        if (range === '1D') {
-          return d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-        }
-        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      });
-
       const equity = h.equity;
-      const trend = equity[equity.length - 1] >= equity[0] ? '#2e7d32' : '#c62828';
-
-      if (chart) chart.destroy();
-
-      chart = new Chart($('chart').getContext('2d'), {
-        type: 'line',
-        data: {
-          labels,
-          datasets: [{
-            data: equity,
-            borderColor: trend,
-            backgroundColor: trend + '15',
-            fill: true,
-            tension: 0.1,
-            pointRadius: 0,
-            borderWidth: 1.5,
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { display: false }, tooltip: {
-            callbacks: {
-              label: ctx => ' $' + ctx.parsed.y.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-            }
-          }},
-          scales: {
-            x: {
-              grid: { color: '#eee' },
-              ticks: { color: '#aaa', maxTicksLimit: 8, font: { family: 'Courier New', size: 10 } },
-            },
-            y: {
-              grid: { color: '#eee' },
-              ticks: {
-                color: '#aaa',
-                font: { family: 'Courier New', size: 10 },
-                callback: v => '$' + v.toLocaleString(),
-              },
-            }
-          }
-        }
-      });
+      const candles = makeCandles(h.timestamps, equity);
+      currentCandles = candles;
+      drawCanvasChart(currentCandles);
+      bindChartHover();
     }
 
     function renderStats() {
@@ -313,6 +520,10 @@
       renderPositions();
       renderOrders();
     }
+
+    window.addEventListener('resize', () => {
+      if (currentCandles.length) drawCanvasChart(currentCandles);
+    });
 
     load().catch(err => {
       console.error(err);
