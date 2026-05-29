@@ -27,6 +27,7 @@ account = get('/v2/account')
 PERIODS = {
     '1D': {'period': '1D', 'timeframe': '5Min'},
     '1M': {'period': '1M', 'timeframe': '1D'},
+    '3M': {'period': '3M', 'timeframe': '1D'},
     '6M': {'period': '6M', 'timeframe': '1D'},
     '1Y': {'period': '1A', 'timeframe': '1D'},
 }
