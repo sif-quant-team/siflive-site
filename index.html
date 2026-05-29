@@ -283,7 +283,7 @@
     let data = null;
     let range = '1M';
     let currentCandles = [];
-    const candleBuckets = { '1D': 3, '1M': 3, '3M': 4, '6M': 4, '1Y': 7 };
+    const candleBuckets = { '1D': 3, '1M': 2, '3M': 4, '6M': 4, '1Y': 7 };
     const rangeLabels = { '1D': 'past 1 day', '1M': 'past 1 month', '3M': 'past 3 months', '6M': 'past 6 months', '1Y': 'past 1 year' };
 
     const $ = id => document.getElementById(id);
@@ -387,8 +387,8 @@
       });
 
       const slotWidth = plotW / Math.max(candles.length, 1);
-      const maxCandleWidth = range === '1D' ? 38 : 22;
-      const candleWidth = clamp(slotWidth * 0.74, 4, maxCandleWidth);
+      const maxCandleWidth = range === '1D' ? 38 : 34;
+      const candleWidth = clamp(slotWidth * 0.9, 5, maxCandleWidth);
 
       candles.forEach((c, i) => {
         const x = xFor(i);
