@@ -67,6 +67,58 @@
     }
 
     /* ── Stats ── */
+    .alpha-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: start;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--sif-red);
+      padding: 18px 22px;
+      margin-bottom: 20px;
+    }
+    .alpha-kicker {
+      color: var(--muted);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+    .alpha-name {
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: 7px;
+    }
+    .alpha-description {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      max-width: 780px;
+    }
+    .alpha-button,
+    .drawer-close {
+      border: 1px solid var(--sif-red);
+      background: var(--sif-red);
+      color: var(--paper);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .alpha-button {
+      padding: 10px 14px;
+      white-space: nowrap;
+    }
+    .alpha-button:hover,
+    .drawer-close:hover {
+      background: var(--sif-red-dark);
+      border-color: var(--sif-red-dark);
+    }
     .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 34px; }
     .stat-box {
       background: var(--paper);
@@ -180,10 +232,74 @@
     .pos { color: var(--positive); }
     .neg { color: var(--negative); }
 
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      background: rgba(21, 21, 21, 0.28);
+      z-index: 20;
+    }
+    .drawer-backdrop.open { display: block; }
+    .alpha-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(680px, 92vw);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--paper);
+      border-left: 3px solid var(--sif-red);
+      box-shadow: -18px 0 40px rgba(21, 21, 21, 0.18);
+      transform: translateX(100%);
+      transition: transform 180ms ease;
+      z-index: 21;
+    }
+    .alpha-drawer.open { transform: translateX(0); }
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 22px 24px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .drawer-title {
+      color: var(--sif-red);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .drawer-subtitle {
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+    .drawer-close {
+      padding: 8px 11px;
+    }
+    .code-frame {
+      flex: 1;
+      overflow: auto;
+      background: #151515;
+      color: #f4f1ed;
+      padding: 18px 20px;
+    }
+    .code-frame pre {
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      overflow-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
     @media (max-width: 760px) {
       body { padding: 24px 16px 32px; }
       .topbar { display: block; }
       .updated { text-align: left; margin-top: 12px; }
+      .alpha-summary { grid-template-columns: 1fr; padding: 16px; }
+      .alpha-button { width: 100%; }
       .stats { grid-template-columns: 1fr; }
       .chart-wrap { height: 300px; padding: 10px; }
       .section-title { display: block; }
@@ -203,6 +319,19 @@
     </div>
     <div class="updated" id="updated">Loading...</div>
   </header>
+
+  <section class="alpha-summary">
+    <div>
+      <div class="alpha-kicker">Current Alpha</div>
+      <h2 class="alpha-name">Cross-Sectional Mean Reversion</h2>
+      <p class="alpha-description">
+        This equity alpha compares each stock's recent return against sector peers,
+        then takes dollar-neutral long and short positions where relative moves look
+        stretched, with the goal of capturing short-horizon mean reversion.
+      </p>
+    </div>
+    <button class="alpha-button" type="button" onclick="openAlphaDrawer()">View This Alpha</button>
+  </section>
 
   <div class="stats">
     <div class="stat-box">
@@ -278,12 +407,27 @@
     </table>
   </div>
 
+  <div class="drawer-backdrop" id="drawer-backdrop" onclick="closeAlphaDrawer()"></div>
+  <aside class="alpha-drawer" id="alpha-drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div>
+        <div class="drawer-title">Alpha Code</div>
+        <div class="drawer-subtitle">Cross-Sectional Mean Reversion</div>
+      </div>
+      <button class="drawer-close" type="button" onclick="closeAlphaDrawer()">Close</button>
+    </div>
+    <div class="code-frame">
+      <pre><code id="alpha-code">Loading alpha...</code></pre>
+    </div>
+  </aside>
+
   <script>
     let data = null;
     let range = '1M';
     let currentCandles = [];
     const candleBuckets = { '1D': 3, '1M': 2, '3M': 4, '6M': 4, '1Y': 7 };
     const rangeLabels = { '1D': 'past 1 day', '1M': 'past 1 month', '3M': 'past 3 months', '6M': 'past 6 months', '1Y': 'past 1 year' };
+    let alphaCodeLoaded = false;
 
     const $ = id => document.getElementById(id);
 
@@ -295,6 +439,33 @@
     function sign(n) { return parseFloat(n) >= 0 ? '+' : ''; }
     function colorClass(n) { return parseFloat(n) >= 0 ? 'pos' : 'neg'; }
     function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+
+    async function loadAlphaCode() {
+      if (alphaCodeLoaded) return;
+
+      try {
+        const res = await fetch(`./data/alpha.py?v=${Date.now()}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        $('alpha-code').textContent = await res.text();
+        alphaCodeLoaded = true;
+      } catch (err) {
+        console.error(err);
+        $('alpha-code').textContent = 'Unable to load alpha code.';
+      }
+    }
+
+    function openAlphaDrawer() {
+      $('drawer-backdrop').classList.add('open');
+      $('alpha-drawer').classList.add('open');
+      $('alpha-drawer').setAttribute('aria-hidden', 'false');
+      loadAlphaCode();
+    }
+
+    function closeAlphaDrawer() {
+      $('drawer-backdrop').classList.remove('open');
+      $('alpha-drawer').classList.remove('open');
+      $('alpha-drawer').setAttribute('aria-hidden', 'true');
+    }
     function formatChartDate(ms) {
       const d = new Date(ms);
       if (range === '1D') return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
