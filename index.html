@@ -227,6 +227,9 @@
     tr:last-child td { border-bottom: none; }
     tr:hover td { background: #fbf8f7; }
     .empty { color: #aaa; font-style: italic; font-family: Arial, Helvetica, sans-serif; }
+    th[data-col] { cursor: pointer; user-select: none; }
+    th[data-col]:hover { color: var(--sif-red-dark); }
+    .sort-arrow { font-size: 0.6rem; margin-left: 3px; opacity: 0.75; }
 
     /* ── Colors ── */
     .pos { color: var(--positive); }
@@ -369,17 +372,17 @@
 
   <div class="section">
     <div class="section-title">Open Positions</div>
-    <table>
+    <table id="positions-table">
       <thead>
         <tr>
-          <th>Symbol</th>
-          <th>Side</th>
-          <th>Qty</th>
-          <th>Avg Entry</th>
-          <th>Current Price</th>
-          <th>Market Value</th>
-          <th>Unrealized P&amp;L</th>
-          <th>%</th>
+          <th data-col="symbol" onclick="handleSort('symbol')">Symbol <span class="sort-arrow"></span></th>
+          <th data-col="side" onclick="handleSort('side')">Side <span class="sort-arrow"></span></th>
+          <th data-col="qty" onclick="handleSort('qty')">Qty <span class="sort-arrow"></span></th>
+          <th data-col="avg_entry_price" onclick="handleSort('avg_entry_price')">Avg Entry <span class="sort-arrow"></span></th>
+          <th data-col="current_price" onclick="handleSort('current_price')">Current Price <span class="sort-arrow"></span></th>
+          <th data-col="market_value" onclick="handleSort('market_value')">Market Value <span class="sort-arrow"></span></th>
+          <th data-col="unrealized_pl" onclick="handleSort('unrealized_pl')">Unrealized P&amp;L <span class="sort-arrow"></span></th>
+          <th data-col="unrealized_plpc" onclick="handleSort('unrealized_plpc')">% <span class="sort-arrow"></span></th>
         </tr>
       </thead>
       <tbody id="positions-body">
@@ -430,6 +433,8 @@
     const candleBuckets = { '1D': 3, '1M': 1, '3M': 4, '6M': 4, '1Y': 7 };
     const rangeLabels = { '1D': 'past 1 day', '1M': 'past 1 month', '3M': 'past 3 months', '6M': 'past 6 months', '1Y': 'past 1 year' };
     let alphaCodeLoaded = false;
+    let sortCol = 'symbol';
+    let sortDir = 'asc';
 
     const $ = id => document.getElementById(id);
 
@@ -807,13 +812,45 @@
       pe.className = 'stat-value ' + colorClass(pnlP);
     }
 
+    function handleSort(col) {
+      if (sortCol === col) {
+        sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortCol = col;
+        sortDir = 'asc';
+      }
+      renderPositions();
+    }
+
     function renderPositions() {
+      document.querySelectorAll('#positions-table th[data-col]').forEach(th => {
+        const arrow = th.querySelector('.sort-arrow');
+        if (!arrow) return;
+        arrow.textContent = th.dataset.col === sortCol ? (sortDir === 'asc' ? '▲' : '▼') : '';
+      });
+
       const body = $('positions-body');
       if (!data.positions.length) {
         body.innerHTML = '<tr><td colspan="8" class="empty">No open positions</td></tr>';
         return;
       }
-      body.innerHTML = data.positions.map(p => {
+
+      const numCols = ['qty', 'avg_entry_price', 'current_price', 'market_value', 'unrealized_pl', 'unrealized_plpc'];
+      const sorted = [...data.positions].sort((a, b) => {
+        let av = a[sortCol], bv = b[sortCol];
+        if (numCols.includes(sortCol)) {
+          av = parseFloat(av);
+          bv = parseFloat(bv);
+        } else {
+          av = String(av).toLowerCase();
+          bv = String(bv).toLowerCase();
+        }
+        if (av < bv) return sortDir === 'asc' ? -1 : 1;
+        if (av > bv) return sortDir === 'asc' ? 1 : -1;
+        return 0;
+      });
+
+      body.innerHTML = sorted.map(p => {
         const cls = colorClass(p.unrealized_pl);
         const pct = fmt(parseFloat(p.unrealized_plpc) * 100);
         return `<tr>
