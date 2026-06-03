@@ -63,8 +63,21 @@
       color: var(--muted);
       font-size: 0.78rem;
       text-align: right;
-      min-width: 210px;
     }
+    .topbar-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; min-width: 210px; }
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 3px 10px;
+      cursor: pointer;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .theme-toggle:hover { border-color: var(--sif-red); color: var(--ink); }
 
     /* ── Stats ── */
     .alpha-summary {
@@ -201,7 +214,7 @@
       display: none;
       pointer-events: none;
       background: rgba(21, 21, 21, 0.92);
-      color: var(--paper);
+      color: #f0ede8;
       padding: 8px 10px;
       font-family: 'Courier New', monospace;
       font-size: 0.72rem;
@@ -230,6 +243,13 @@
     th[data-col] { cursor: pointer; user-select: none; }
     th[data-col]:hover { color: var(--sif-red-dark); }
     .sort-arrow { font-size: 0.6rem; margin-left: 3px; opacity: 0.75; }
+    .filter-bar { display: flex; align-items: center; gap: 20px; }
+    .filter-group { display: flex; align-items: center; gap: 5px; }
+    .filter-label { color: var(--muted); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-right: 2px; font-family: Arial, Helvetica, sans-serif; }
+    .filter-btn { background: transparent; border: 1px solid var(--line); color: var(--muted); padding: 3px 9px; cursor: pointer; font-family: Arial, Helvetica, sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .filter-btn:hover { color: var(--ink); border-color: var(--sif-red); }
+    .filter-btn.active { background: var(--sif-red); border-color: var(--sif-red); color: var(--paper); }
+    .filter-count { color: var(--muted); font-size: 0.68rem; font-style: italic; font-family: Arial, Helvetica, sans-serif; white-space: nowrap; }
 
     /* ── Colors ── */
     .pos { color: var(--positive); }
@@ -297,10 +317,29 @@
       white-space: pre-wrap;
     }
 
+    /* ── Dark mode ── */
+    [data-theme="dark"] {
+      --sif-red: #b8202a;
+      --sif-red-dark: #8f151d;
+      --ink: #e8e4df;
+      --muted: #909090;
+      --line: #2a2a2a;
+      --soft-line: #222222;
+      --paper: #1e1b18;
+      --wash: #141210;
+      --positive: #1db954;
+      --negative: #e53935;
+    }
+    [data-theme="dark"] body {
+      background: var(--wash);
+    }
+    [data-theme="dark"] tr:hover td { background: #212121; }
+    [data-theme="dark"] .drawer-backdrop { background: rgba(0,0,0,0.5); }
+
     @media (max-width: 760px) {
       body { padding: 24px 16px 32px; }
       .topbar { display: block; }
-      .updated { text-align: left; margin-top: 12px; }
+      .topbar-right { align-items: flex-start; min-width: unset; margin-top: 12px; }
       .alpha-summary { grid-template-columns: 1fr; padding: 16px; }
       .alpha-button { width: 100%; }
       .stats { grid-template-columns: 1fr; }
@@ -312,6 +351,7 @@
       .section { overflow-x: auto; }
     }
   </style>
+  <script>if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark';</script>
 </head>
 <body>
 
@@ -320,7 +360,10 @@
       <div class="brand-kicker">Smith Investment Fund</div>
       <h1>SIF Live</h1>
     </div>
-    <div class="updated" id="updated">Loading...</div>
+    <div class="topbar-right">
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">Dark</button>
+      <div class="updated" id="updated">Loading...</div>
+    </div>
   </header>
 
   <section class="alpha-summary">
@@ -371,7 +414,24 @@
   </div>
 
   <div class="section">
-    <div class="section-title">Open Positions</div>
+    <div class="section-title" style="align-items:center">
+      <span>Open Positions</span>
+      <div class="filter-bar">
+        <div class="filter-group" data-filter="side">
+          <span class="filter-label">Side</span>
+          <button class="filter-btn active" data-val="all"   onclick="handleFilterSide('all')">All</button>
+          <button class="filter-btn"        data-val="long"  onclick="handleFilterSide('long')">Long</button>
+          <button class="filter-btn"        data-val="short" onclick="handleFilterSide('short')">Short</button>
+        </div>
+        <div class="filter-group" data-filter="pnl">
+          <span class="filter-label">P&amp;L</span>
+          <button class="filter-btn active" data-val="all"     onclick="handleFilterPnl('all')">All</button>
+          <button class="filter-btn"        data-val="winning" onclick="handleFilterPnl('winning')">Winning</button>
+          <button class="filter-btn"        data-val="losing"  onclick="handleFilterPnl('losing')">Losing</button>
+        </div>
+        <span class="filter-count" id="filter-count"></span>
+      </div>
+    </div>
     <table id="positions-table">
       <thead>
         <tr>
@@ -435,6 +495,8 @@
     let alphaCodeLoaded = false;
     let sortCol = 'symbol';
     let sortDir = 'asc';
+    let filterSide = 'all';
+    let filterPnl  = 'all';
 
     const $ = id => document.getElementById(id);
 
@@ -520,8 +582,9 @@
       const plotW = width - pad.left - pad.right;
       const plotH = height - pad.top - pad.bottom;
 
+      const colors = getThemeColors();
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = colors.paper;
       ctx.fillRect(0, 0, width, height);
 
       if (!candles.length || plotW <= 0 || plotH <= 0) return;
@@ -542,8 +605,8 @@
         : pad.left + horizontalInset + (i / (candles.length - 1)) * innerPlotW;
       const yFor = v => pad.top + ((max - v) / (max - min)) * plotH;
 
-      ctx.strokeStyle = '#eeeeee';
-      ctx.fillStyle = '#747474';
+      ctx.strokeStyle = colors.line;
+      ctx.fillStyle = colors.muted;
       ctx.lineWidth = 1;
       ctx.font = '11px Arial';
       ctx.textAlign = 'right';
@@ -573,7 +636,7 @@
       candles.forEach((c, i) => {
         const x = xFor(i);
         const up = c.c >= c.o;
-        const color = up ? '#176f3d' : '#b11d2a';
+        const color = up ? colors.positive : colors.negative;
         const bodyTop = yFor(Math.max(c.o, c.c));
         const bodyBottom = yFor(Math.min(c.o, c.c));
         const bodyHeight = Math.max(2, bodyBottom - bodyTop);
@@ -590,7 +653,7 @@
         ctx.fillRect(x - candleWidth / 2, bodyTop, candleWidth, bodyHeight);
 
         if (hoverIndex === i) {
-          ctx.strokeStyle = '#151515';
+          ctx.strokeStyle = colors.ink;
           ctx.strokeRect(x - candleWidth / 2 - 2, bodyTop - 2, candleWidth + 4, bodyHeight + 4);
         }
       });
@@ -610,8 +673,9 @@
       const plotW = width - pad.left - pad.right;
       const plotH = height - pad.top - pad.bottom;
 
+      const colors = getThemeColors();
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = colors.paper;
       ctx.fillRect(0, 0, width, height);
 
       if (!points.length || plotW <= 0 || plotH <= 0) return;
@@ -624,10 +688,10 @@
 
       const xFor = i => points.length === 1 ? pad.left + plotW / 2 : pad.left + (i / (points.length - 1)) * plotW;
       const yFor = v => pad.top + ((max - v) / (max - min)) * plotH;
-      const trend = points[points.length - 1].y >= points[0].y ? '#176f3d' : '#b11d2a';
+      const trend = points[points.length - 1].y >= points[0].y ? colors.positive : colors.negative;
 
-      ctx.strokeStyle = '#eeeeee';
-      ctx.fillStyle = '#747474';
+      ctx.strokeStyle = colors.line;
+      ctx.fillStyle = colors.muted;
       ctx.lineWidth = 1;
       ctx.font = '11px Arial';
       ctx.textAlign = 'right';
@@ -686,7 +750,7 @@
       points.forEach((p, i) => {
         const x = xFor(i);
         const y = yFor(p.y);
-        ctx.fillStyle = i === hoverIndex ? '#151515' : trend;
+        ctx.fillStyle = i === hoverIndex ? colors.ink : trend;
         ctx.beginPath();
         ctx.arc(x, y, i === hoverIndex ? 4 : 2.5, 0, Math.PI * 2);
         ctx.fill();
@@ -812,6 +876,16 @@
       pe.className = 'stat-value ' + colorClass(pnlP);
     }
 
+    function handleFilterSide(val) {
+      filterSide = filterSide === val ? 'all' : val;
+      renderPositions();
+    }
+
+    function handleFilterPnl(val) {
+      filterPnl = filterPnl === val ? 'all' : val;
+      renderPositions();
+    }
+
     function handleSort(col) {
       if (sortCol === col) {
         sortDir = sortDir === 'asc' ? 'desc' : 'asc';
@@ -829,14 +903,33 @@
         arrow.textContent = th.dataset.col === sortCol ? (sortDir === 'asc' ? '▲' : '▼') : '';
       });
 
+      document.querySelectorAll('.filter-group[data-filter="side"] .filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.val === filterSide);
+      });
+      document.querySelectorAll('.filter-group[data-filter="pnl"] .filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.val === filterPnl);
+      });
+
+      let filtered = data.positions;
+      if (filterSide !== 'all')
+        filtered = filtered.filter(p => p.side.toLowerCase() === filterSide);
+      if (filterPnl !== 'all')
+        filtered = filtered.filter(p =>
+          filterPnl === 'winning' ? parseFloat(p.unrealized_pl) >= 0 : parseFloat(p.unrealized_pl) < 0
+        );
+
+      const countEl = $('filter-count');
+      countEl.textContent = `${filtered.length} of ${data.positions.length} positions`;
+
       const body = $('positions-body');
-      if (!data.positions.length) {
-        body.innerHTML = '<tr><td colspan="8" class="empty">No open positions</td></tr>';
+      if (!filtered.length) {
+        const msg = data.positions.length ? 'No positions match the current filter' : 'No open positions';
+        body.innerHTML = `<tr><td colspan="8" class="empty">${msg}</td></tr>`;
         return;
       }
 
       const numCols = ['qty', 'avg_entry_price', 'current_price', 'market_value', 'unrealized_pl', 'unrealized_plpc'];
-      const sorted = [...data.positions].sort((a, b) => {
+      const sorted = [...filtered].sort((a, b) => {
         let av = a[sortCol], bv = b[sortCol];
         if (numCols.includes(sortCol)) {
           av = parseFloat(av);
@@ -886,6 +979,27 @@
       }).join('');
     }
 
+    function getThemeColors() {
+      const s = getComputedStyle(document.documentElement);
+      return {
+        paper:    s.getPropertyValue('--paper').trim(),
+        line:     s.getPropertyValue('--line').trim(),
+        muted:    s.getPropertyValue('--muted').trim(),
+        ink:      s.getPropertyValue('--ink').trim(),
+        positive: s.getPropertyValue('--positive').trim(),
+        negative: s.getPropertyValue('--negative').trim(),
+      };
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      document.documentElement.dataset.theme = isDark ? '' : 'dark';
+      $('theme-toggle').textContent = isDark ? 'Dark' : 'Light';
+      localStorage.setItem('theme', isDark ? 'light' : 'dark');
+      if (currentCandles.length) drawCanvasChart(currentCandles);
+      else if (currentLinePoints.length) drawLineChart(currentLinePoints);
+    }
+
     async function load() {
       const res = await fetch(`./data/dashboard.json?v=${Date.now()}`);
       data = await res.json();
@@ -905,6 +1019,8 @@
     window.addEventListener('resize', () => {
       if (currentCandles.length) drawCanvasChart(currentCandles);
     });
+
+    if (document.documentElement.dataset.theme === 'dark') $('theme-toggle').textContent = 'Light';
 
     load().catch(err => {
       console.error(err);

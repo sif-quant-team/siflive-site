@@ -39,7 +39,7 @@ for label, params in PERIODS.items():
     pairs = [
         (ts, eq)
         for ts, eq in zip(data['timestamp'], data['equity'])
-        if eq is not None
+        if eq is not None and eq != 0
     ]
     timestamps, equity = zip(*pairs) if pairs else ([], [])
     history[label] = {
