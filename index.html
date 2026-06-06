@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIF Live Trading Dashboard</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@300;400;500;700&display=swap">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -18,8 +18,10 @@
       --soft-line: #eeeeee;
       --paper: #ffffff;
       --wash: #f7f5f2;
-      --positive: #176f3d;
-      --negative: #b11d2a;
+      --positive: #1a8a52;
+      --negative: #c0392b;
+      --font-num: "JetBrains Mono", monospace;
+      --font-ui-table: "Inter", system-ui, sans-serif;
     }
 
     body {
@@ -71,7 +73,7 @@
       color: var(--muted);
       padding: 3px 10px;
       cursor: pointer;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: inherit;
       font-size: 0.68rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -161,7 +163,7 @@
       align-items: baseline;
       justify-content: space-between;
       gap: 16px;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: inherit;
       font-size: 0.72rem;
       color: var(--sif-red);
       font-weight: 700;
@@ -185,7 +187,7 @@
       color: var(--muted);
       padding: 6px 13px;
       cursor: pointer;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: inherit;
       font-size: 0.8rem;
       font-weight: 700;
     }
@@ -225,7 +227,7 @@
     }
 
     /* ── Tables ── */
-    table { width: 100%; border-collapse: collapse; font-family: Arial, Helvetica, sans-serif; font-size: 0.82rem; background: var(--paper); }
+    table { width: 100%; border-collapse: collapse; font-family: inherit; font-size: 0.82rem; background: var(--paper); }
     th {
       text-align: left;
       color: var(--sif-red);
@@ -239,17 +241,17 @@
     td { padding: 9px 10px; border-bottom: 1px solid var(--soft-line); }
     tr:last-child td { border-bottom: none; }
     tr:hover td { background: #fbf8f7; }
-    .empty { color: #aaa; font-style: italic; font-family: Arial, Helvetica, sans-serif; }
+    .empty { color: #aaa; font-style: italic; font-family: inherit; }
     th[data-col] { cursor: pointer; user-select: none; }
     th[data-col]:hover { color: var(--sif-red-dark); }
     .sort-arrow { font-size: 0.6rem; margin-left: 3px; opacity: 0.75; }
     .filter-bar { display: flex; align-items: center; gap: 20px; }
     .filter-group { display: flex; align-items: center; gap: 5px; }
-    .filter-label { color: var(--muted); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-right: 2px; font-family: Arial, Helvetica, sans-serif; }
-    .filter-btn { background: transparent; border: 1px solid var(--line); color: var(--muted); padding: 3px 9px; cursor: pointer; font-family: Arial, Helvetica, sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+    .filter-label { color: var(--muted); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-right: 2px; font-family: inherit; }
+    .filter-btn { background: transparent; border: 1px solid var(--line); color: var(--muted); padding: 3px 9px; cursor: pointer; font-family: inherit; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
     .filter-btn:hover { color: var(--ink); border-color: var(--sif-red); }
     .filter-btn.active { background: var(--sif-red); border-color: var(--sif-red); color: var(--paper); }
-    .filter-count { color: var(--muted); font-size: 0.68rem; font-style: italic; font-family: Arial, Helvetica, sans-serif; white-space: nowrap; }
+    .filter-count { color: var(--muted); font-size: 0.68rem; font-style: italic; font-family: inherit; white-space: nowrap; }
 
     /* ── Colors ── */
     .pos { color: var(--positive); }
@@ -317,6 +319,36 @@
       white-space: pre-wrap;
     }
 
+    /* ── Positions table ── */
+    .data-table { font-family: var(--font-ui-table); }
+    .data-table th {
+      font-family: var(--font-ui-table);
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-align: right;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--line);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .data-table th.text { text-align: left; }
+    .data-table td { font-family: var(--font-ui-table); border: 0; padding: 6px 12px; }
+    .data-table td.num {
+      font-family: var(--font-num);
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1, "zero" 1;
+      text-align: right;
+      white-space: nowrap;
+      font-size: 0.8rem;
+    }
+    .data-table td.sym { font-weight: 500; text-align: left; }
+    .data-table td.side { color: var(--muted); font-size: 0.75rem; text-align: left; }
+    .data-table tbody tr:nth-child(even) td { background: rgba(0,0,0,0.025); }
+    .data-table tbody tr:hover td { background: rgba(0,0,0,0.04); }
+    .data-table thead th { position: sticky; top: 0; background: var(--paper); z-index: 1; }
+    .data-table tr:last-child td { border-bottom: none; }
+
     /* ── Dark mode ── */
     [data-theme="dark"] {
       --sif-red: #b8202a;
@@ -327,13 +359,16 @@
       --soft-line: #222222;
       --paper: #1e1b18;
       --wash: #141210;
-      --positive: #1db954;
-      --negative: #e53935;
+      --positive: #3fb87f;
+      --negative: #d8584f;
     }
     [data-theme="dark"] body {
       background: var(--wash);
     }
     [data-theme="dark"] tr:hover td { background: #212121; }
+    [data-theme="dark"] .data-table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.025); }
+    [data-theme="dark"] .data-table tbody tr:hover td { background: rgba(255,255,255,0.05); }
+    [data-theme="dark"] .data-table thead th { background: var(--paper); }
     [data-theme="dark"] .drawer-backdrop { background: rgba(0,0,0,0.5); }
 
     @media (max-width: 760px) {
@@ -432,17 +467,17 @@
         <span class="filter-count" id="filter-count"></span>
       </div>
     </div>
-    <table id="positions-table">
+    <table id="positions-table" class="data-table">
       <thead>
         <tr>
-          <th data-col="symbol" onclick="handleSort('symbol')">Symbol <span class="sort-arrow"></span></th>
-          <th data-col="side" onclick="handleSort('side')">Side <span class="sort-arrow"></span></th>
-          <th data-col="qty" onclick="handleSort('qty')">Qty <span class="sort-arrow"></span></th>
-          <th data-col="avg_entry_price" onclick="handleSort('avg_entry_price')">Avg Entry <span class="sort-arrow"></span></th>
-          <th data-col="current_price" onclick="handleSort('current_price')">Current Price <span class="sort-arrow"></span></th>
-          <th data-col="market_value" onclick="handleSort('market_value')">Market Value <span class="sort-arrow"></span></th>
-          <th data-col="unrealized_pl" onclick="handleSort('unrealized_pl')">Unrealized P&amp;L <span class="sort-arrow"></span></th>
-          <th data-col="unrealized_plpc" onclick="handleSort('unrealized_plpc')">% <span class="sort-arrow"></span></th>
+          <th class="text" data-col="symbol" onclick="handleSort('symbol')">Symbol <span class="sort-arrow"></span></th>
+          <th class="text" data-col="side" onclick="handleSort('side')">Side <span class="sort-arrow"></span></th>
+          <th class="num"  data-col="qty" onclick="handleSort('qty')">Qty <span class="sort-arrow"></span></th>
+          <th class="num"  data-col="avg_entry_price" onclick="handleSort('avg_entry_price')">Avg Entry ($) <span class="sort-arrow"></span></th>
+          <th class="num"  data-col="current_price" onclick="handleSort('current_price')">Cur Price ($) <span class="sort-arrow"></span></th>
+          <th class="num"  data-col="market_value" onclick="handleSort('market_value')">Mkt Value ($) <span class="sort-arrow"></span></th>
+          <th class="num"  data-col="unrealized_pl" onclick="handleSort('unrealized_pl')">P&amp;L ($) <span class="sort-arrow"></span></th>
+          <th class="num"  data-col="unrealized_plpc" onclick="handleSort('unrealized_plpc')">% <span class="sort-arrow"></span></th>
         </tr>
       </thead>
       <tbody id="positions-body">
@@ -453,15 +488,15 @@
 
   <div class="section">
     <div class="section-title">Recent Filled Orders</div>
-    <table>
+    <table class="data-table">
       <thead>
         <tr>
-          <th>Symbol</th>
-          <th>Side</th>
-          <th>Qty</th>
-          <th>Type</th>
-          <th>Fill Price</th>
-          <th>Filled At</th>
+          <th class="text">Symbol</th>
+          <th class="text">Side</th>
+          <th class="num">Qty</th>
+          <th class="text">Type</th>
+          <th class="num">Fill Price ($)</th>
+          <th class="text">Filled At</th>
         </tr>
       </thead>
       <tbody id="orders-body">
@@ -504,7 +539,17 @@
       const v = parseFloat(n);
       return isNaN(v) ? '—' : v.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
     }
-    function fmtDollar(n) { return '$' + fmt(n); }
+    function bare(n) {
+      const v = parseFloat(n);
+      if (isNaN(v)) return '—';
+      return (v < 0 ? '-' : '') + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function fmtDollar(n) {
+      const v = parseFloat(n);
+      if (isNaN(v)) return '—';
+      return (v < 0 ? '-$' : '$') + Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
     function sign(n) { return parseFloat(n) >= 0 ? '+' : ''; }
     function colorClass(n) { return parseFloat(n) >= 0 ? 'pos' : 'neg'; }
     function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
@@ -608,7 +653,7 @@
       ctx.strokeStyle = colors.line;
       ctx.fillStyle = colors.muted;
       ctx.lineWidth = 1;
-      ctx.font = '11px Arial';
+      ctx.font = "11px Poppins, Arial, sans-serif";
       ctx.textAlign = 'right';
       ctx.textBaseline = 'middle';
 
@@ -693,7 +738,7 @@
       ctx.strokeStyle = colors.line;
       ctx.fillStyle = colors.muted;
       ctx.lineWidth = 1;
-      ctx.font = '11px Arial';
+      ctx.font = "11px Poppins, Arial, sans-serif";
       ctx.textAlign = 'right';
       ctx.textBaseline = 'middle';
 
@@ -947,14 +992,14 @@
         const cls = colorClass(p.unrealized_pl);
         const pct = fmt(parseFloat(p.unrealized_plpc) * 100);
         return `<tr>
-          <td><strong>${p.symbol}</strong></td>
-          <td>${p.side.toUpperCase()}</td>
-          <td>${fmt(p.qty, 0)}</td>
-          <td>${fmtDollar(p.avg_entry_price)}</td>
-          <td>${fmtDollar(p.current_price)}</td>
-          <td>${fmtDollar(p.market_value)}</td>
-          <td class="${cls}">${sign(p.unrealized_pl)}${fmtDollar(p.unrealized_pl)}</td>
-          <td class="${cls}">${sign(p.unrealized_plpc)}${pct}%</td>
+          <td class="sym">${p.symbol}</td>
+          <td class="side">${p.side.toUpperCase()}</td>
+          <td class="num">${fmt(p.qty, 0)}</td>
+          <td class="num">${bare(p.avg_entry_price)}</td>
+          <td class="num">${bare(p.current_price)}</td>
+          <td class="num">${bare(p.market_value)}</td>
+          <td class="num ${cls}">${sign(p.unrealized_pl)}${bare(p.unrealized_pl)}</td>
+          <td class="num ${cls}">${sign(p.unrealized_plpc)}${pct}%</td>
         </tr>`;
       }).join('');
     }
@@ -969,12 +1014,12 @@
         const cls = o.side === 'buy' ? 'pos' : 'neg';
         const filledAt = o.filled_at ? new Date(o.filled_at).toLocaleString() : '—';
         return `<tr>
-          <td><strong>${o.symbol}</strong></td>
+          <td class="sym">${o.symbol}</td>
           <td class="${cls}">${o.side.toUpperCase()}</td>
-          <td>${fmt(o.qty, 0)}</td>
-          <td>${o.type.toUpperCase()}</td>
-          <td>${o.filled_avg_price ? fmtDollar(o.filled_avg_price) : '—'}</td>
-          <td style="color:#aaa">${filledAt}</td>
+          <td class="num">${fmt(o.qty, 0)}</td>
+          <td class="side">${o.type.toUpperCase()}</td>
+          <td class="num">${o.filled_avg_price ? bare(o.filled_avg_price) : '—'}</td>
+          <td class="side">${filledAt}</td>
         </tr>`;
       }).join('');
     }
