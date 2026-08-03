@@ -907,16 +907,29 @@
       const { equity, last_equity } = data.account;
       if (equity === null) return;
 
-      const pnlD = parseFloat(equity) - parseFloat(last_equity);
-      const pnlP = pnlD / parseFloat(last_equity);
-
       $('equity').textContent = fmtDollar(equity);
 
       const de = $('pnl-dollar');
+      const pe = $('pnl-pct');
+
+      // Alpaca has returned last_equity: "0" for a full session before. Without
+      // this guard P&L reads as the whole portfolio value and P&L % as +Infinity.
+      const base = parseFloat(last_equity);
+      const cur = parseFloat(equity);
+      if (!isFinite(base) || base === 0 || !isFinite(cur)) {
+        de.textContent = '—';
+        de.className = 'stat-value';
+        pe.textContent = '—';
+        pe.className = 'stat-value';
+        return;
+      }
+
+      const pnlD = cur - base;
+      const pnlP = pnlD / base;
+
       de.textContent = (pnlD >= 0 ? '+$' : '-$') + fmt(Math.abs(pnlD));
       de.className = 'stat-value ' + colorClass(pnlD);
 
-      const pe = $('pnl-pct');
       pe.textContent = sign(pnlP) + fmt(pnlP * 100) + '%';
       pe.className = 'stat-value ' + colorClass(pnlP);
     }

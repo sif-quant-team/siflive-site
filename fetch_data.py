@@ -47,6 +47,15 @@ for label, params in PERIODS.items():
         'equity': list(equity),
     }
 
+def clean_equity(value):
+    """Alpaca has returned last_equity: "0" for a full session. Treat a zero or
+    non-numeric baseline as absent so the dashboard can show it as unavailable."""
+    try:
+        return value if float(value) != 0 else None
+    except (TypeError, ValueError):
+        return None
+
+
 # Open positions
 positions_raw = get('/v2/positions')
 positions = [
@@ -81,7 +90,7 @@ dashboard = {
     'updated_at': datetime.now(timezone.utc).isoformat(),
     'account': {
         'equity': account['equity'],
-        'last_equity': account['last_equity'],
+        'last_equity': clean_equity(account['last_equity']),
         'buying_power': account['buying_power'],
     },
     'history': history,
