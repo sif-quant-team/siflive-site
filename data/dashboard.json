@@ -1,9 +1,9 @@
 {
-  "updated_at": "2026-08-18T16:12:03.774493+00:00",
+  "updated_at": "2026-08-18T16:47:32.914809+00:00",
   "account": {
-    "equity": "106029.93",
+    "equity": "105993.61",
     "last_equity": "105211.75",
-    "buying_power": "262425.21"
+    "buying_power": "262126.29"
   },
   "history": {
     "1D": {
@@ -40,7 +40,14 @@
         1787068500,
         1787068800,
         1787069100,
-        1787069400
+        1787069400,
+        1787069700,
+        1787070000,
+        1787070300,
+        1787070600,
+        1787070900,
+        1787071200,
+        1787071500
       ],
       "equity": [
         105509.79,
@@ -73,9 +80,16 @@
         106042.91,
         106021.92,
         106036.28,
-        106002.25,
-        106001.7,
-        106008.02
+        106014.08,
+        106014.49,
+        106020.81,
+        106060.31,
+        106074.38,
+        106071.52,
+        106090.05,
+        106031.69,
+        105999.05,
+        106022.39
       ]
     },
     "1M": {
@@ -1029,190 +1043,190 @@
       "side": "short",
       "qty": "-72",
       "avg_entry_price": "10.14",
-      "current_price": "10.13",
-      "market_value": "-729.36",
-      "unrealized_pl": "0.72",
-      "unrealized_plpc": "0.00099"
+      "current_price": "10.115",
+      "market_value": "-728.28",
+      "unrealized_pl": "1.8",
+      "unrealized_plpc": "0.00247"
     },
     {
       "symbol": "AESI",
       "side": "short",
       "qty": "-57",
       "avg_entry_price": "14.09875",
-      "current_price": "12.51",
-      "market_value": "-713.07",
-      "unrealized_pl": "90.55875",
-      "unrealized_plpc": "0.11269"
+      "current_price": "12.57",
+      "market_value": "-716.49",
+      "unrealized_pl": "87.13875",
+      "unrealized_plpc": "0.10843"
     },
     {
       "symbol": "AMSC",
       "side": "short",
       "qty": "-23",
       "avg_entry_price": "37.566667",
-      "current_price": "30.65",
-      "market_value": "-704.95",
-      "unrealized_pl": "159.083341",
-      "unrealized_plpc": "0.18412"
+      "current_price": "30.76",
+      "market_value": "-707.48",
+      "unrealized_pl": "156.553341",
+      "unrealized_plpc": "0.18119"
     },
     {
       "symbol": "ANAB",
       "side": "short",
       "qty": "-13",
       "avg_entry_price": "63.543077",
-      "current_price": "59.19",
-      "market_value": "-769.47",
-      "unrealized_pl": "56.590001",
-      "unrealized_plpc": "0.06851"
+      "current_price": "59.27",
+      "market_value": "-770.51",
+      "unrealized_pl": "55.550001",
+      "unrealized_plpc": "0.06725"
     },
     {
       "symbol": "APLD",
       "side": "short",
       "qty": "-24",
       "avg_entry_price": "31.615",
-      "current_price": "28.995",
-      "market_value": "-695.88",
-      "unrealized_pl": "62.88",
-      "unrealized_plpc": "0.08287"
+      "current_price": "29.19",
+      "market_value": "-700.56",
+      "unrealized_pl": "58.2",
+      "unrealized_plpc": "0.0767"
     },
     {
       "symbol": "AXTI",
       "side": "short",
       "qty": "-8",
       "avg_entry_price": "83.513",
-      "current_price": "83.84",
-      "market_value": "-670.72",
-      "unrealized_pl": "-2.616",
-      "unrealized_plpc": "-0.00392"
+      "current_price": "82.18",
+      "market_value": "-657.44",
+      "unrealized_pl": "10.664",
+      "unrealized_plpc": "0.01596"
     },
     {
       "symbol": "BAND",
       "side": "short",
       "qty": "-14",
       "avg_entry_price": "52.85",
-      "current_price": "51.21",
-      "market_value": "-716.94",
-      "unrealized_pl": "22.96",
-      "unrealized_plpc": "0.03103"
+      "current_price": "51.8325",
+      "market_value": "-725.655",
+      "unrealized_pl": "14.245",
+      "unrealized_plpc": "0.01925"
     },
     {
       "symbol": "BBT",
       "side": "long",
       "qty": "39",
       "avg_entry_price": "29.772564",
-      "current_price": "32.33",
-      "market_value": "1260.87",
-      "unrealized_pl": "99.740004",
-      "unrealized_plpc": "0.0859"
+      "current_price": "32.3389",
+      "market_value": "1261.2171",
+      "unrealized_pl": "100.087104",
+      "unrealized_plpc": "0.0862"
     },
     {
       "symbol": "BE",
       "side": "short",
       "qty": "-4",
       "avg_entry_price": "285.9825",
-      "current_price": "208.36",
-      "market_value": "-833.44",
-      "unrealized_pl": "310.49",
-      "unrealized_plpc": "0.27142"
+      "current_price": "209.36",
+      "market_value": "-837.44",
+      "unrealized_pl": "306.49",
+      "unrealized_plpc": "0.26793"
     },
     {
       "symbol": "BIRD",
       "side": "long",
       "qty": "521",
       "avg_entry_price": "2.273647",
-      "current_price": "2.51",
-      "market_value": "1307.71",
-      "unrealized_pl": "123.139913",
-      "unrealized_plpc": "0.10395"
+      "current_price": "2.515",
+      "market_value": "1310.315",
+      "unrealized_pl": "125.744913",
+      "unrealized_plpc": "0.10615"
     },
     {
       "symbol": "BRO",
       "side": "long",
       "qty": "18",
       "avg_entry_price": "60.670556",
-      "current_price": "70.515",
-      "market_value": "1269.27",
-      "unrealized_pl": "177.199992",
-      "unrealized_plpc": "0.16226"
+      "current_price": "70.4015",
+      "market_value": "1267.227",
+      "unrealized_pl": "175.156992",
+      "unrealized_plpc": "0.16039"
     },
     {
       "symbol": "BWIN",
       "side": "long",
       "qty": "42",
       "avg_entry_price": "26.301429",
-      "current_price": "31.16",
-      "market_value": "1308.72",
-      "unrealized_pl": "204.059982",
-      "unrealized_plpc": "0.18473"
+      "current_price": "30.95",
+      "market_value": "1299.9",
+      "unrealized_pl": "195.239982",
+      "unrealized_plpc": "0.17674"
     },
     {
       "symbol": "CAR",
       "side": "long",
       "qty": "9",
       "avg_entry_price": "137.545556",
-      "current_price": "138.58",
-      "market_value": "1247.22",
-      "unrealized_pl": "9.309996",
-      "unrealized_plpc": "0.00752"
+      "current_price": "138.95",
+      "market_value": "1250.55",
+      "unrealized_pl": "12.639996",
+      "unrealized_plpc": "0.01021"
     },
     {
       "symbol": "CASH",
       "side": "long",
       "qty": "15",
       "avg_entry_price": "81.453333",
-      "current_price": "84.97",
-      "market_value": "1274.55",
-      "unrealized_pl": "52.750005",
-      "unrealized_plpc": "0.04317"
+      "current_price": "85.1",
+      "market_value": "1276.5",
+      "unrealized_pl": "54.700005",
+      "unrealized_plpc": "0.04477"
     },
     {
       "symbol": "CBOE",
       "side": "short",
       "qty": "-3",
       "avg_entry_price": "362.773333",
-      "current_price": "295.23",
-      "market_value": "-885.69",
-      "unrealized_pl": "202.629999",
-      "unrealized_plpc": "0.18619"
+      "current_price": "295.46",
+      "market_value": "-886.38",
+      "unrealized_pl": "201.939999",
+      "unrealized_plpc": "0.18555"
     },
     {
       "symbol": "CC",
       "side": "short",
       "qty": "-47",
       "avg_entry_price": "18.120204",
-      "current_price": "15.27",
-      "market_value": "-717.69",
-      "unrealized_pl": "133.959588",
-      "unrealized_plpc": "0.15729"
+      "current_price": "15.28",
+      "market_value": "-718.16",
+      "unrealized_pl": "133.489588",
+      "unrealized_plpc": "0.15674"
     },
     {
       "symbol": "CECO",
       "side": "short",
       "qty": "-9",
       "avg_entry_price": "84.22",
-      "current_price": "78.22",
-      "market_value": "-703.98",
-      "unrealized_pl": "54",
-      "unrealized_plpc": "0.07124"
+      "current_price": "77.98",
+      "market_value": "-701.82",
+      "unrealized_pl": "56.16",
+      "unrealized_plpc": "0.07409"
     },
     {
       "symbol": "CHEF",
       "side": "short",
       "qty": "-7",
       "avg_entry_price": "109.602857",
-      "current_price": "110.33",
-      "market_value": "-772.31",
-      "unrealized_pl": "-5.090001",
-      "unrealized_plpc": "-0.00663"
+      "current_price": "109.3",
+      "market_value": "-765.1",
+      "unrealized_pl": "2.119999",
+      "unrealized_plpc": "0.00276"
     },
     {
       "symbol": "CLB",
       "side": "long",
       "qty": "102",
       "avg_entry_price": "10.435785",
-      "current_price": "12.375",
-      "market_value": "1262.25",
-      "unrealized_pl": "197.79993",
-      "unrealized_plpc": "0.18582"
+      "current_price": "12.385",
+      "market_value": "1263.27",
+      "unrealized_pl": "198.81993",
+      "unrealized_plpc": "0.18678"
     },
     {
       "symbol": "CMCT",
@@ -1239,690 +1253,690 @@
       "side": "short",
       "qty": "-11",
       "avg_entry_price": "75.676364",
-      "current_price": "64.91",
-      "market_value": "-714.01",
-      "unrealized_pl": "118.430004",
-      "unrealized_plpc": "0.14227"
+      "current_price": "64.605",
+      "market_value": "-710.655",
+      "unrealized_pl": "121.785004",
+      "unrealized_plpc": "0.1463"
     },
     {
       "symbol": "CRCL",
       "side": "short",
       "qty": "-10",
       "avg_entry_price": "95.408312",
-      "current_price": "72.7573",
-      "market_value": "-727.573",
-      "unrealized_pl": "226.51012",
-      "unrealized_plpc": "0.23741"
+      "current_price": "72.88",
+      "market_value": "-728.8",
+      "unrealized_pl": "225.28312",
+      "unrealized_plpc": "0.23613"
     },
     {
       "symbol": "CSGP",
       "side": "long",
       "qty": "41",
       "avg_entry_price": "28.622195",
-      "current_price": "32.08",
-      "market_value": "1315.28",
-      "unrealized_pl": "141.770005",
-      "unrealized_plpc": "0.12081"
+      "current_price": "32.03",
+      "market_value": "1313.23",
+      "unrealized_pl": "139.720005",
+      "unrealized_plpc": "0.11906"
     },
     {
       "symbol": "CTOS",
       "side": "short",
       "qty": "-70",
       "avg_entry_price": "11.011233",
-      "current_price": "9.9",
-      "market_value": "-693",
-      "unrealized_pl": "77.78631",
-      "unrealized_plpc": "0.10092"
+      "current_price": "9.97",
+      "market_value": "-697.9",
+      "unrealized_pl": "72.88631",
+      "unrealized_plpc": "0.09456"
     },
     {
       "symbol": "CTRI",
       "side": "short",
       "qty": "-31",
       "avg_entry_price": "27.184107",
-      "current_price": "22.735",
-      "market_value": "-704.785",
-      "unrealized_pl": "137.922317",
-      "unrealized_plpc": "0.16367"
+      "current_price": "22.77",
+      "market_value": "-705.87",
+      "unrealized_pl": "136.837317",
+      "unrealized_plpc": "0.16238"
     },
     {
       "symbol": "CURV",
       "side": "long",
       "qty": "637",
       "avg_entry_price": "2.139702",
-      "current_price": "2.17",
-      "market_value": "1382.29",
-      "unrealized_pl": "19.299826",
-      "unrealized_plpc": "0.01416"
+      "current_price": "2.1316",
+      "market_value": "1357.8292",
+      "unrealized_pl": "-5.160974",
+      "unrealized_plpc": "-0.00379"
     },
     {
       "symbol": "DNA",
       "side": "short",
       "qty": "-105",
       "avg_entry_price": "8.776571",
-      "current_price": "6.575",
-      "market_value": "-690.375",
-      "unrealized_pl": "231.164955",
-      "unrealized_plpc": "0.25085"
+      "current_price": "6.57",
+      "market_value": "-689.85",
+      "unrealized_pl": "231.689955",
+      "unrealized_plpc": "0.25142"
     },
     {
       "symbol": "ECG",
       "side": "short",
       "qty": "-6",
       "avg_entry_price": "155.241667",
-      "current_price": "131.75",
-      "market_value": "-790.5",
-      "unrealized_pl": "140.950002",
-      "unrealized_plpc": "0.15132"
+      "current_price": "132.35",
+      "market_value": "-794.1",
+      "unrealized_pl": "137.350002",
+      "unrealized_plpc": "0.14746"
     },
     {
       "symbol": "EGHT",
       "side": "short",
       "qty": "-357",
       "avg_entry_price": "2.313657",
-      "current_price": "2.125",
-      "market_value": "-758.625",
-      "unrealized_pl": "67.350549",
-      "unrealized_plpc": "0.08154"
+      "current_price": "2.115",
+      "market_value": "-755.055",
+      "unrealized_pl": "70.920549",
+      "unrealized_plpc": "0.08586"
     },
     {
       "symbol": "ERAS",
       "side": "long",
       "qty": "70",
       "avg_entry_price": "16.490286",
-      "current_price": "18.17",
-      "market_value": "1271.9",
-      "unrealized_pl": "117.57998",
-      "unrealized_plpc": "0.10186"
+      "current_price": "18.22",
+      "market_value": "1275.4",
+      "unrealized_pl": "121.07998",
+      "unrealized_plpc": "0.10489"
     },
     {
       "symbol": "ERIE",
       "side": "long",
       "qty": "5",
       "avg_entry_price": "211.978",
-      "current_price": "257.965",
-      "market_value": "1289.825",
-      "unrealized_pl": "229.935",
-      "unrealized_plpc": "0.21694"
+      "current_price": "258.64",
+      "market_value": "1293.2",
+      "unrealized_pl": "233.31",
+      "unrealized_plpc": "0.22013"
     },
     {
       "symbol": "EVH",
       "side": "short",
       "qty": "-163",
       "avg_entry_price": "4.45",
-      "current_price": "4.43",
-      "market_value": "-722.09",
-      "unrealized_pl": "3.26",
-      "unrealized_plpc": "0.00449"
+      "current_price": "4.455",
+      "market_value": "-726.165",
+      "unrealized_pl": "-0.815",
+      "unrealized_plpc": "-0.00112"
     },
     {
       "symbol": "FATE",
       "side": "short",
       "qty": "-278",
       "avg_entry_price": "2.702267",
-      "current_price": "2.565",
-      "market_value": "-713.07",
-      "unrealized_pl": "38.160226",
-      "unrealized_plpc": "0.0508"
+      "current_price": "2.568",
+      "market_value": "-713.904",
+      "unrealized_pl": "37.326226",
+      "unrealized_plpc": "0.04969"
     },
     {
       "symbol": "FCEL",
       "side": "short",
       "qty": "-34",
       "avg_entry_price": "21.18",
-      "current_price": "21.025",
-      "market_value": "-714.85",
-      "unrealized_pl": "5.27",
-      "unrealized_plpc": "0.00732"
+      "current_price": "21.54",
+      "market_value": "-732.36",
+      "unrealized_pl": "-12.24",
+      "unrealized_plpc": "-0.017"
     },
     {
       "symbol": "FCX",
       "side": "long",
       "qty": "18",
       "avg_entry_price": "60.775",
-      "current_price": "65.985",
-      "market_value": "1187.73",
-      "unrealized_pl": "93.78",
-      "unrealized_plpc": "0.08573"
+      "current_price": "66.05",
+      "market_value": "1188.9",
+      "unrealized_pl": "94.95",
+      "unrealized_plpc": "0.0868"
     },
     {
       "symbol": "FIVN",
       "side": "short",
       "qty": "-23",
       "avg_entry_price": "33.332174",
-      "current_price": "32.935",
-      "market_value": "-757.505",
-      "unrealized_pl": "9.135002",
-      "unrealized_plpc": "0.01192"
+      "current_price": "32.95",
+      "market_value": "-757.85",
+      "unrealized_pl": "8.790002",
+      "unrealized_plpc": "0.01147"
     },
     {
       "symbol": "FWRD",
       "side": "long",
       "qty": "67",
       "avg_entry_price": "14.596716",
-      "current_price": "19.25",
-      "market_value": "1289.75",
-      "unrealized_pl": "311.770028",
-      "unrealized_plpc": "0.31879"
+      "current_price": "19.27",
+      "market_value": "1291.09",
+      "unrealized_pl": "313.110028",
+      "unrealized_plpc": "0.32016"
     },
     {
       "symbol": "GBTG",
       "side": "short",
       "qty": "-78",
       "avg_entry_price": "9.4405",
-      "current_price": "9.455",
-      "market_value": "-737.49",
-      "unrealized_pl": "-1.131",
-      "unrealized_plpc": "-0.00154"
+      "current_price": "9.4501",
+      "market_value": "-737.1078",
+      "unrealized_pl": "-0.7488",
+      "unrealized_plpc": "-0.00102"
     },
     {
       "symbol": "GLXY",
       "side": "short",
       "qty": "-34",
       "avg_entry_price": "24.101944",
-      "current_price": "20.79",
-      "market_value": "-706.86",
-      "unrealized_pl": "112.606096",
-      "unrealized_plpc": "0.13741"
+      "current_price": "20.9129",
+      "market_value": "-711.0386",
+      "unrealized_pl": "108.427496",
+      "unrealized_plpc": "0.13231"
     },
     {
       "symbol": "GTX",
       "side": "short",
       "qty": "-26",
       "avg_entry_price": "33.984231",
-      "current_price": "27.905",
-      "market_value": "-725.53",
-      "unrealized_pl": "158.060006",
-      "unrealized_plpc": "0.17888"
+      "current_price": "27.98",
+      "market_value": "-727.48",
+      "unrealized_pl": "156.110006",
+      "unrealized_plpc": "0.17668"
     },
     {
       "symbol": "HCAT",
       "side": "short",
       "qty": "-428",
       "avg_entry_price": "2.069722",
-      "current_price": "1.73",
-      "market_value": "-740.44",
-      "unrealized_pl": "145.401016",
-      "unrealized_plpc": "0.16414"
+      "current_price": "1.72",
+      "market_value": "-736.16",
+      "unrealized_pl": "149.681016",
+      "unrealized_plpc": "0.16897"
     },
     {
       "symbol": "HELE",
       "side": "short",
       "qty": "-25",
       "avg_entry_price": "30.0684",
-      "current_price": "28.81",
-      "market_value": "-720.25",
-      "unrealized_pl": "31.46",
-      "unrealized_plpc": "0.04185"
+      "current_price": "28.735",
+      "market_value": "-718.375",
+      "unrealized_pl": "33.335",
+      "unrealized_plpc": "0.04435"
     },
     {
       "symbol": "HLNE",
       "side": "long",
       "qty": "12",
       "avg_entry_price": "76.18",
-      "current_price": "101.83",
-      "market_value": "1221.96",
-      "unrealized_pl": "307.8",
-      "unrealized_plpc": "0.3367"
+      "current_price": "101.93",
+      "market_value": "1223.16",
+      "unrealized_pl": "309",
+      "unrealized_plpc": "0.33802"
     },
     {
       "symbol": "HOOD",
       "side": "long",
       "qty": "13",
       "avg_entry_price": "87.949341",
-      "current_price": "93.1833",
-      "market_value": "1211.3829",
-      "unrealized_pl": "68.041467",
-      "unrealized_plpc": "0.05951"
+      "current_price": "93.3326",
+      "market_value": "1213.3238",
+      "unrealized_pl": "69.982367",
+      "unrealized_plpc": "0.06121"
     },
     {
       "symbol": "HTZ",
       "side": "long",
       "qty": "602",
       "avg_entry_price": "1.741113",
-      "current_price": "2.0601",
-      "market_value": "1240.1802",
-      "unrealized_pl": "192.030174",
-      "unrealized_plpc": "0.18321"
+      "current_price": "2.085",
+      "market_value": "1255.17",
+      "unrealized_pl": "207.019974",
+      "unrealized_plpc": "0.19751"
     },
     {
       "symbol": "IHRT",
       "side": "short",
       "qty": "-246",
       "avg_entry_price": "3.824901",
-      "current_price": "2.92",
-      "market_value": "-718.32",
-      "unrealized_pl": "222.605646",
-      "unrealized_plpc": "0.23658"
+      "current_price": "2.93",
+      "market_value": "-720.78",
+      "unrealized_pl": "220.145646",
+      "unrealized_plpc": "0.23397"
     },
     {
       "symbol": "INTC",
       "side": "short",
       "qty": "-8",
       "avg_entry_price": "102.235",
-      "current_price": "96.31",
-      "market_value": "-770.48",
-      "unrealized_pl": "47.4",
-      "unrealized_plpc": "0.05795"
+      "current_price": "96.23",
+      "market_value": "-769.84",
+      "unrealized_pl": "48.04",
+      "unrealized_plpc": "0.05874"
     },
     {
       "symbol": "JLL",
       "side": "long",
       "qty": "4",
       "avg_entry_price": "286.78875",
-      "current_price": "373.955",
-      "market_value": "1495.82",
-      "unrealized_pl": "348.665",
-      "unrealized_plpc": "0.30394"
+      "current_price": "374.11",
+      "market_value": "1496.44",
+      "unrealized_pl": "349.285",
+      "unrealized_plpc": "0.30448"
     },
     {
       "symbol": "KLC",
       "side": "short",
       "qty": "-286",
       "avg_entry_price": "3.946853",
-      "current_price": "2.59",
-      "market_value": "-740.74",
-      "unrealized_pl": "388.059958",
-      "unrealized_plpc": "0.34378"
+      "current_price": "2.665",
+      "market_value": "-762.19",
+      "unrealized_pl": "366.609958",
+      "unrealized_plpc": "0.32478"
     },
     {
       "symbol": "KNSA",
       "side": "short",
       "qty": "-10",
       "avg_entry_price": "78.938",
-      "current_price": "79.66",
-      "market_value": "-796.6",
-      "unrealized_pl": "-7.22",
-      "unrealized_plpc": "-0.00915"
+      "current_price": "79.39",
+      "market_value": "-793.9",
+      "unrealized_pl": "-4.52",
+      "unrealized_plpc": "-0.00573"
     },
     {
       "symbol": "KNSL",
       "side": "long",
       "qty": "4",
       "avg_entry_price": "292.28",
-      "current_price": "377.63",
-      "market_value": "1510.52",
-      "unrealized_pl": "341.4",
-      "unrealized_plpc": "0.29201"
+      "current_price": "377.38",
+      "market_value": "1509.52",
+      "unrealized_pl": "340.4",
+      "unrealized_plpc": "0.29116"
     },
     {
       "symbol": "KOPN",
       "side": "short",
       "qty": "-136",
       "avg_entry_price": "5.085513",
-      "current_price": "5.179",
-      "market_value": "-704.344",
-      "unrealized_pl": "-12.714232",
-      "unrealized_plpc": "-0.01838"
+      "current_price": "5.19",
+      "market_value": "-705.84",
+      "unrealized_pl": "-14.210232",
+      "unrealized_plpc": "-0.02055"
     },
     {
       "symbol": "KOS",
       "side": "short",
       "qty": "-280",
       "avg_entry_price": "2.544967",
-      "current_price": "2.685",
-      "market_value": "-751.8",
-      "unrealized_pl": "-39.20924",
-      "unrealized_plpc": "-0.05502"
+      "current_price": "2.695",
+      "market_value": "-754.6",
+      "unrealized_pl": "-42.00924",
+      "unrealized_plpc": "-0.05895"
     },
     {
       "symbol": "KRO",
       "side": "short",
       "qty": "-89",
       "avg_entry_price": "8.544382",
-      "current_price": "7.885",
-      "market_value": "-701.765",
-      "unrealized_pl": "58.684998",
-      "unrealized_plpc": "0.07717"
+      "current_price": "7.865",
+      "market_value": "-699.985",
+      "unrealized_pl": "60.464998",
+      "unrealized_plpc": "0.07951"
     },
     {
       "symbol": "LGN",
       "side": "short",
       "qty": "-11",
       "avg_entry_price": "74.830909",
-      "current_price": "65.61",
-      "market_value": "-721.71",
-      "unrealized_pl": "101.429999",
-      "unrealized_plpc": "0.12322"
+      "current_price": "65.7",
+      "market_value": "-722.7",
+      "unrealized_pl": "100.439999",
+      "unrealized_plpc": "0.12202"
     },
     {
       "symbol": "LMND",
       "side": "long",
       "qty": "25",
       "avg_entry_price": "49.6576",
-      "current_price": "50.67",
-      "market_value": "1266.75",
-      "unrealized_pl": "25.31",
-      "unrealized_plpc": "0.02039"
+      "current_price": "50.55",
+      "market_value": "1263.75",
+      "unrealized_pl": "22.31",
+      "unrealized_plpc": "0.01797"
     },
     {
       "symbol": "MANE",
       "side": "short",
       "qty": "-7",
       "avg_entry_price": "123.061429",
-      "current_price": "108.09",
-      "market_value": "-756.63",
-      "unrealized_pl": "104.800003",
-      "unrealized_plpc": "0.12166"
+      "current_price": "108.215",
+      "market_value": "-757.505",
+      "unrealized_pl": "103.925003",
+      "unrealized_plpc": "0.12064"
     },
     {
       "symbol": "MH",
       "side": "long",
       "qty": "101",
       "avg_entry_price": "10.08604",
-      "current_price": "13.22",
-      "market_value": "1335.22",
-      "unrealized_pl": "316.52996",
-      "unrealized_plpc": "0.31072"
+      "current_price": "13.21",
+      "market_value": "1334.21",
+      "unrealized_pl": "315.51996",
+      "unrealized_plpc": "0.30973"
     },
     {
       "symbol": "MOH",
       "side": "short",
       "qty": "-4",
       "avg_entry_price": "223.675",
-      "current_price": "205.5",
-      "market_value": "-822",
-      "unrealized_pl": "72.7",
-      "unrealized_plpc": "0.08126"
+      "current_price": "205.14",
+      "market_value": "-820.56",
+      "unrealized_pl": "74.14",
+      "unrealized_plpc": "0.08287"
     },
     {
       "symbol": "MUSA",
       "side": "short",
       "qty": "-1",
       "avg_entry_price": "621.08",
-      "current_price": "580.83",
-      "market_value": "-580.83",
-      "unrealized_pl": "40.25",
-      "unrealized_plpc": "0.06481"
+      "current_price": "576.71",
+      "market_value": "-576.71",
+      "unrealized_pl": "44.37",
+      "unrealized_plpc": "0.07144"
     },
     {
       "symbol": "MWH",
       "side": "short",
       "qty": "-24",
       "avg_entry_price": "30.911667",
-      "current_price": "30.6",
-      "market_value": "-734.4",
-      "unrealized_pl": "7.480008",
-      "unrealized_plpc": "0.01008"
+      "current_price": "30.975",
+      "market_value": "-743.4",
+      "unrealized_pl": "-1.519992",
+      "unrealized_plpc": "-0.00205"
     },
     {
       "symbol": "MXL",
       "side": "short",
       "qty": "-9",
       "avg_entry_price": "73.04",
-      "current_price": "73.5101",
-      "market_value": "-661.5909",
-      "unrealized_pl": "-4.2309",
-      "unrealized_plpc": "-0.00644"
+      "current_price": "73.19",
+      "market_value": "-658.71",
+      "unrealized_pl": "-1.35",
+      "unrealized_plpc": "-0.00205"
     },
     {
       "symbol": "MYRG",
       "side": "short",
       "qty": "-2",
       "avg_entry_price": "413.03",
-      "current_price": "322.51",
-      "market_value": "-645.02",
-      "unrealized_pl": "181.04",
-      "unrealized_plpc": "0.21916"
+      "current_price": "322.0601",
+      "market_value": "-644.1202",
+      "unrealized_pl": "181.9398",
+      "unrealized_plpc": "0.22025"
     },
     {
       "symbol": "NBR",
       "side": "short",
       "qty": "-8",
       "avg_entry_price": "95.901111",
-      "current_price": "94.91",
-      "market_value": "-759.28",
-      "unrealized_pl": "7.928888",
-      "unrealized_plpc": "0.01033"
+      "current_price": "94.505",
+      "market_value": "-756.04",
+      "unrealized_pl": "11.168888",
+      "unrealized_plpc": "0.01456"
     },
     {
       "symbol": "NHI",
       "side": "long",
       "qty": "18",
       "avg_entry_price": "71.655556",
-      "current_price": "73.21",
-      "market_value": "1317.78",
-      "unrealized_pl": "27.979992",
-      "unrealized_plpc": "0.02169"
+      "current_price": "73.42",
+      "market_value": "1321.56",
+      "unrealized_pl": "31.759992",
+      "unrealized_plpc": "0.02462"
     },
     {
       "symbol": "NP",
       "side": "long",
       "qty": "41",
       "avg_entry_price": "29.130244",
-      "current_price": "31.65",
-      "market_value": "1297.65",
-      "unrealized_pl": "103.309996",
-      "unrealized_plpc": "0.0865"
+      "current_price": "31.6",
+      "market_value": "1295.6",
+      "unrealized_pl": "101.259996",
+      "unrealized_plpc": "0.08478"
     },
     {
       "symbol": "NRGV",
       "side": "short",
       "qty": "-190",
       "avg_entry_price": "3.94699",
-      "current_price": "3.7001",
-      "market_value": "-703.019",
-      "unrealized_pl": "46.9091",
-      "unrealized_plpc": "0.06255"
+      "current_price": "3.73",
+      "market_value": "-708.7",
+      "unrealized_pl": "41.2281",
+      "unrealized_plpc": "0.05498"
     },
     {
       "symbol": "NUTX",
       "side": "short",
       "qty": "-4",
       "avg_entry_price": "181.955",
-      "current_price": "188.3",
-      "market_value": "-753.2",
-      "unrealized_pl": "-25.38",
-      "unrealized_plpc": "-0.03487"
+      "current_price": "189.045",
+      "market_value": "-756.18",
+      "unrealized_pl": "-28.36",
+      "unrealized_plpc": "-0.03897"
     },
     {
       "symbol": "NVCR",
       "side": "short",
       "qty": "-42",
       "avg_entry_price": "17.585814",
-      "current_price": "17.13",
-      "market_value": "-719.46",
-      "unrealized_pl": "19.144188",
-      "unrealized_plpc": "0.02592"
+      "current_price": "17.16",
+      "market_value": "-720.72",
+      "unrealized_pl": "17.884188",
+      "unrealized_plpc": "0.02421"
     },
     {
       "symbol": "NXRT",
       "side": "short",
       "qty": "-30",
       "avg_entry_price": "28.29",
-      "current_price": "23.86",
-      "market_value": "-715.8",
-      "unrealized_pl": "132.9",
-      "unrealized_plpc": "0.15659"
+      "current_price": "23.77",
+      "market_value": "-713.1",
+      "unrealized_pl": "135.6",
+      "unrealized_plpc": "0.15977"
     },
     {
       "symbol": "OGN",
       "side": "short",
       "qty": "-54",
       "avg_entry_price": "13.428182",
-      "current_price": "13.695",
-      "market_value": "-739.53",
-      "unrealized_pl": "-14.408172",
-      "unrealized_plpc": "-0.01987"
+      "current_price": "13.685",
+      "market_value": "-738.99",
+      "unrealized_pl": "-13.868172",
+      "unrealized_plpc": "-0.01913"
     },
     {
       "symbol": "OPCH",
       "side": "long",
       "qty": "55",
       "avg_entry_price": "21.891247",
-      "current_price": "23.99",
-      "market_value": "1319.45",
-      "unrealized_pl": "115.431415",
-      "unrealized_plpc": "0.09587"
+      "current_price": "23.91",
+      "market_value": "1315.05",
+      "unrealized_pl": "111.031415",
+      "unrealized_plpc": "0.09222"
     },
     {
       "symbol": "PACK",
       "side": "short",
       "qty": "-138",
       "avg_entry_price": "6.258479",
-      "current_price": "5.21",
-      "market_value": "-718.98",
-      "unrealized_pl": "144.690102",
-      "unrealized_plpc": "0.16753"
+      "current_price": "5.215",
+      "market_value": "-719.67",
+      "unrealized_pl": "144.000102",
+      "unrealized_plpc": "0.16673"
     },
     {
       "symbol": "PIPR",
       "side": "long",
       "qty": "17",
       "avg_entry_price": "73.847059",
-      "current_price": "74.75",
-      "market_value": "1270.75",
-      "unrealized_pl": "15.349997",
-      "unrealized_plpc": "0.01223"
+      "current_price": "75.065",
+      "market_value": "1276.105",
+      "unrealized_pl": "20.704997",
+      "unrealized_plpc": "0.01649"
     },
     {
       "symbol": "PPTA",
       "side": "long",
       "qty": "53",
       "avg_entry_price": "17.930944",
-      "current_price": "24.07",
-      "market_value": "1275.71",
-      "unrealized_pl": "325.369968",
-      "unrealized_plpc": "0.34237"
+      "current_price": "24.16",
+      "market_value": "1280.48",
+      "unrealized_pl": "330.139968",
+      "unrealized_plpc": "0.34739"
     },
     {
       "symbol": "PWR",
       "side": "short",
       "qty": "-1",
       "avg_entry_price": "734.96",
-      "current_price": "699.06",
-      "market_value": "-699.06",
-      "unrealized_pl": "35.9",
-      "unrealized_plpc": "0.04885"
+      "current_price": "700.575",
+      "market_value": "-700.575",
+      "unrealized_pl": "34.385",
+      "unrealized_plpc": "0.04678"
     },
     {
       "symbol": "REPL",
       "side": "short",
       "qty": "-49",
       "avg_entry_price": "15.328776",
-      "current_price": "15.32",
-      "market_value": "-750.68",
-      "unrealized_pl": "0.430024",
-      "unrealized_plpc": "0.00057"
+      "current_price": "15.43",
+      "market_value": "-756.07",
+      "unrealized_pl": "-4.959976",
+      "unrealized_plpc": "-0.0066"
     },
     {
       "symbol": "RILY",
       "side": "short",
       "qty": "-102",
       "avg_entry_price": "7.801373",
-      "current_price": "7.16",
-      "market_value": "-730.32",
-      "unrealized_pl": "65.420046",
-      "unrealized_plpc": "0.08221"
+      "current_price": "7.18",
+      "market_value": "-732.36",
+      "unrealized_pl": "63.380046",
+      "unrealized_plpc": "0.07965"
     },
     {
       "symbol": "RKT",
       "side": "long",
       "qty": "89",
       "avg_entry_price": "13.498539",
-      "current_price": "14.06",
-      "market_value": "1251.34",
-      "unrealized_pl": "49.970029",
-      "unrealized_plpc": "0.04159"
+      "current_price": "14.125",
+      "market_value": "1257.125",
+      "unrealized_pl": "55.755029",
+      "unrealized_plpc": "0.04641"
     },
     {
       "symbol": "RMR",
       "side": "short",
       "qty": "-36",
       "avg_entry_price": "20.137568",
-      "current_price": "20.13",
-      "market_value": "-724.68",
-      "unrealized_pl": "0.272448",
-      "unrealized_plpc": "0.00038"
+      "current_price": "20.11",
+      "market_value": "-723.96",
+      "unrealized_pl": "0.992448",
+      "unrealized_plpc": "0.00137"
     },
     {
       "symbol": "RSI",
       "side": "short",
       "qty": "-29",
       "avg_entry_price": "31.586333",
-      "current_price": "25.15",
-      "market_value": "-729.35",
-      "unrealized_pl": "186.653657",
-      "unrealized_plpc": "0.20377"
+      "current_price": "25.13",
+      "market_value": "-728.77",
+      "unrealized_pl": "187.233657",
+      "unrealized_plpc": "0.2044"
     },
     {
       "symbol": "RXT",
       "side": "short",
       "qty": "-184",
       "avg_entry_price": "4.784566",
-      "current_price": "3.655",
-      "market_value": "-672.52",
-      "unrealized_pl": "207.840144",
-      "unrealized_plpc": "0.23609"
+      "current_price": "3.665",
+      "market_value": "-674.36",
+      "unrealized_pl": "206.000144",
+      "unrealized_plpc": "0.234"
     },
     {
       "symbol": "RYAN",
       "side": "long",
       "qty": "31",
       "avg_entry_price": "37.142904",
-      "current_price": "41.91",
-      "market_value": "1299.21",
-      "unrealized_pl": "147.779976",
-      "unrealized_plpc": "0.12834"
+      "current_price": "41.815",
+      "market_value": "1296.265",
+      "unrealized_pl": "144.834976",
+      "unrealized_plpc": "0.12579"
     },
     {
       "symbol": "SEIC",
       "side": "short",
       "qty": "-7",
       "avg_entry_price": "103.29",
-      "current_price": "106.73",
-      "market_value": "-747.11",
-      "unrealized_pl": "-24.08",
-      "unrealized_plpc": "-0.0333"
+      "current_price": "106.93",
+      "market_value": "-748.51",
+      "unrealized_pl": "-25.48",
+      "unrealized_plpc": "-0.03524"
     },
     {
       "symbol": "SMMT",
       "side": "long",
       "qty": "101",
       "avg_entry_price": "12.837425",
-      "current_price": "12.805",
-      "market_value": "1293.305",
-      "unrealized_pl": "-3.274925",
-      "unrealized_plpc": "-0.00253"
+      "current_price": "12.93",
+      "market_value": "1305.93",
+      "unrealized_pl": "9.350075",
+      "unrealized_plpc": "0.00721"
     },
     {
       "symbol": "SOFI",
       "side": "long",
       "qty": "70",
       "avg_entry_price": "16.414428",
-      "current_price": "17.995",
-      "market_value": "1259.65",
-      "unrealized_pl": "110.64004",
-      "unrealized_plpc": "0.09629"
+      "current_price": "18.0299",
+      "market_value": "1262.093",
+      "unrealized_pl": "113.08304",
+      "unrealized_plpc": "0.09842"
     },
     {
       "symbol": "TREE",
       "side": "long",
       "qty": "41",
       "avg_entry_price": "32.283171",
-      "current_price": "31.25",
-      "market_value": "1281.25",
-      "unrealized_pl": "-42.360011",
-      "unrealized_plpc": "-0.032"
+      "current_price": "31.2",
+      "market_value": "1279.2",
+      "unrealized_pl": "-44.410011",
+      "unrealized_plpc": "-0.03355"
     },
     {
       "symbol": "TSCO",
       "side": "long",
       "qty": "37",
       "avg_entry_price": "30.685135",
-      "current_price": "35.47",
-      "market_value": "1312.39",
-      "unrealized_pl": "177.040005",
-      "unrealized_plpc": "0.15593"
+      "current_price": "35.505",
+      "market_value": "1313.685",
+      "unrealized_pl": "178.335005",
+      "unrealized_plpc": "0.15707"
     },
     {
       "symbol": "TWLO",
       "side": "short",
       "qty": "-3",
       "avg_entry_price": "252.373333",
-      "current_price": "233.88",
-      "market_value": "-701.64",
-      "unrealized_pl": "55.479999",
-      "unrealized_plpc": "0.07328"
+      "current_price": "233.21",
+      "market_value": "-699.63",
+      "unrealized_pl": "57.489999",
+      "unrealized_plpc": "0.07593"
     },
     {
       "symbol": "TWO",
@@ -1939,120 +1953,120 @@
       "side": "long",
       "qty": "263",
       "avg_entry_price": "4.88",
-      "current_price": "4.945",
-      "market_value": "1300.535",
-      "unrealized_pl": "17.095",
-      "unrealized_plpc": "0.01332"
+      "current_price": "4.96",
+      "market_value": "1304.48",
+      "unrealized_pl": "21.04",
+      "unrealized_plpc": "0.01639"
     },
     {
       "symbol": "USLM",
       "side": "long",
       "qty": "11",
       "avg_entry_price": "96.83",
-      "current_price": "117.46",
-      "market_value": "1292.06",
-      "unrealized_pl": "226.93",
-      "unrealized_plpc": "0.21305"
+      "current_price": "117.65",
+      "market_value": "1294.15",
+      "unrealized_pl": "229.02",
+      "unrealized_plpc": "0.21502"
     },
     {
       "symbol": "VISN",
       "side": "long",
       "qty": "111",
       "avg_entry_price": "11.143514",
-      "current_price": "11.26",
-      "market_value": "1249.86",
-      "unrealized_pl": "12.929946",
-      "unrealized_plpc": "0.01045"
+      "current_price": "11.265",
+      "market_value": "1250.415",
+      "unrealized_pl": "13.484946",
+      "unrealized_plpc": "0.0109"
     },
     {
       "symbol": "VMI",
       "side": "short",
       "qty": "-1",
       "avg_entry_price": "493.02",
-      "current_price": "489.35",
-      "market_value": "-489.35",
-      "unrealized_pl": "3.67",
-      "unrealized_plpc": "0.00744"
+      "current_price": "489.655",
+      "market_value": "-489.655",
+      "unrealized_pl": "3.365",
+      "unrealized_plpc": "0.00683"
     },
     {
       "symbol": "VOYA",
       "side": "short",
       "qty": "-7",
       "avg_entry_price": "100.59",
-      "current_price": "100.54",
-      "market_value": "-703.78",
-      "unrealized_pl": "0.35",
-      "unrealized_plpc": "0.0005"
+      "current_price": "100.45",
+      "market_value": "-703.15",
+      "unrealized_pl": "0.98",
+      "unrealized_plpc": "0.00139"
     },
     {
       "symbol": "VSEC",
       "side": "long",
       "qty": "6",
       "avg_entry_price": "178.405",
-      "current_price": "237.53",
-      "market_value": "1425.18",
-      "unrealized_pl": "354.75",
-      "unrealized_plpc": "0.33141"
+      "current_price": "237.605",
+      "market_value": "1425.63",
+      "unrealized_pl": "355.2",
+      "unrealized_plpc": "0.33183"
     },
     {
       "symbol": "VVV",
       "side": "long",
       "qty": "38",
       "avg_entry_price": "33.583947",
-      "current_price": "33.795",
-      "market_value": "1284.21",
-      "unrealized_pl": "8.020014",
-      "unrealized_plpc": "0.00628"
+      "current_price": "33.855",
+      "market_value": "1286.49",
+      "unrealized_pl": "10.300014",
+      "unrealized_plpc": "0.00807"
     },
     {
       "symbol": "WING",
       "side": "long",
       "qty": "11",
       "avg_entry_price": "120.949091",
-      "current_price": "118.17",
-      "market_value": "1299.87",
-      "unrealized_pl": "-30.570001",
-      "unrealized_plpc": "-0.02298"
+      "current_price": "118.25",
+      "market_value": "1300.75",
+      "unrealized_pl": "-29.690001",
+      "unrealized_plpc": "-0.02232"
     },
     {
       "symbol": "WTI",
       "side": "short",
       "qty": "-195",
       "avg_entry_price": "3.687895",
-      "current_price": "3.805",
-      "market_value": "-741.975",
-      "unrealized_pl": "-22.835475",
-      "unrealized_plpc": "-0.03175"
+      "current_price": "3.81",
+      "market_value": "-742.95",
+      "unrealized_pl": "-23.810475",
+      "unrealized_plpc": "-0.03311"
     },
     {
       "symbol": "WULF",
       "side": "short",
       "qty": "-41",
       "avg_entry_price": "19.718043",
-      "current_price": "16.28",
-      "market_value": "-667.48",
-      "unrealized_pl": "140.959763",
-      "unrealized_plpc": "0.17436"
+      "current_price": "16.335",
+      "market_value": "-669.735",
+      "unrealized_pl": "138.704763",
+      "unrealized_plpc": "0.17157"
     },
     {
       "symbol": "XNDU",
       "side": "long",
       "qty": "116",
       "avg_entry_price": "10.334052",
-      "current_price": "10.65",
-      "market_value": "1235.4",
-      "unrealized_pl": "36.649968",
-      "unrealized_plpc": "0.03057"
+      "current_price": "10.63",
+      "market_value": "1233.08",
+      "unrealized_pl": "34.329968",
+      "unrealized_plpc": "0.02864"
     },
     {
       "symbol": "XRX",
       "side": "short",
       "qty": "-246",
       "avg_entry_price": "3.13439",
-      "current_price": "3.02",
-      "market_value": "-742.92",
-      "unrealized_pl": "28.13994",
-      "unrealized_plpc": "0.0365"
+      "current_price": "2.995",
+      "market_value": "-736.77",
+      "unrealized_pl": "34.28994",
+      "unrealized_plpc": "0.04447"
     }
   ],
   "orders": [
